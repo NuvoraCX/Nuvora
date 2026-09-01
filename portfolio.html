@@ -117,8 +117,18 @@
     line-height: 0.92;
     color: var(--cream);
     letter-spacing: -0.03em;
-    transition: color 0.15s;
     cursor: default;
+    animation: greetingPulse 4s ease-in-out infinite;
+  }
+
+  .greeting:nth-child(1) { animation-delay: 0s; }
+  .greeting:nth-child(2) { animation-delay: 1s; }
+  .greeting:nth-child(3) { animation-delay: 2s; }
+  .greeting:nth-child(4) { animation-delay: 3s; }
+
+  @keyframes greetingPulse {
+    0%, 100% { color: var(--cream); }
+    50% { color: var(--lime); }
   }
 
   .greeting:hover { color: var(--lime); }

@@ -10,9 +10,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #e8dfc8;
-    --card: #d8ccb4;
-    --card2: #c8bca0;
+    --bg: #e2d8c3;
+    --card: #d4c9b0;
+    --card2: #c4b89e;
     --dark: #1e1508;
     --mid: #4a3820;
     --gold: #6a9000;
@@ -230,7 +230,79 @@
 
   .reveal-card span { color: var(--gold); }
 
-  /* FRICTION */
+  /* ROADMAP */
+  .roadmap-section { background: var(--dark); }
+  .roadmap-section .section { padding: 40px 0; }
+  .roadmap-section .section-label { color: var(--gold); }
+
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .roadmap-item {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 16px;
+    width: 100%;
+  }
+
+  .roadmap-first { border-color: var(--gold); }
+  .roadmap-last { border-color: var(--gold); background: rgba(106,144,0,0.15); }
+
+  .roadmap-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .roadmap-last .roadmap-text { color: var(--gold); }
+
+  .roadmap-sub {
+    font-size: 11px;
+    color: rgba(250,246,238,0.4);
+    font-weight: 300;
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .roadmap-arrow {
+    font-size: 14px;
+    color: var(--gold);
+    padding: 2px 16px;
+  }
+
+  .roadmap-ghost {
+    background: transparent;
+    border: 0.5px dashed rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 10px 16px;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .roadmap-ghost-text {
+    font-size: 16px;
+    color: rgba(250,246,238,0.2);
+    letter-spacing: 0.2em;
+  }
+
+  .roadmap-closing {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(250,246,238,0.5);
+    margin-top: 24px;
+    line-height: 1.6;
+    text-align: center;
+  }
   .story-personal {
     display: flex;
     gap: 20px;
@@ -241,10 +313,9 @@
     width: 160px;
     height: 240px;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 30%;
     border-radius: 12px;
     flex-shrink: 0;
-    filter: grayscale(20%);
   }
 
   .story-personal-text { flex: 1; }
@@ -518,7 +589,45 @@
 
 <hr class="divider">
 
-<!-- CTA -->
+<!-- ROADMAP -->
+<div class="roadmap-section">
+  <div class="page">
+    <div class="section">
+      <div class="section-label">Qué cubre este ebook</div>
+      <div class="roadmap">
+        <div class="roadmap-item roadmap-first">
+          <div class="roadmap-text">QUIERO EMPEZAR</div>
+        </div>
+        <div class="roadmap-arrow">↓</div>
+        <div class="roadmap-item">
+          <div class="roadmap-text">DEFINO MI OBJETIVO</div>
+          <div class="roadmap-sub">¿Qué quiero conseguir realmente?</div>
+        </div>
+        <div class="roadmap-arrow">↓</div>
+        <div class="roadmap-item">
+          <div class="roadmap-text">VEO QUÉ CABE EN MI VIDA</div>
+          <div class="roadmap-sub">Días · horario · tiempo · energía</div>
+        </div>
+        <div class="roadmap-arrow">↓</div>
+        <div class="roadmap-item">
+          <div class="roadmap-text">REDUZCO LAS FRICCIONES</div>
+          <div class="roadmap-sub">Lo que hace más difícil continuar.</div>
+        </div>
+        <div class="roadmap-arrow">↓</div>
+        <div class="roadmap-item roadmap-ghost"><div class="roadmap-ghost-text">…</div></div>
+        <div class="roadmap-arrow">↓</div>
+        <div class="roadmap-item roadmap-ghost"><div class="roadmap-ghost-text">…</div></div>
+        <div class="roadmap-arrow">↓</div>
+        <div class="roadmap-item roadmap-last">
+          <div class="roadmap-text">CONSTRUYO CONSTANCIA</div>
+        </div>
+      </div>
+      <p class="roadmap-closing">Porque antes de copiar la rutina de alguien que ya está ahí, necesitas construir todo lo que te permita llegar a ti también.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
 <div class="page">
   <div class="cta-section">
     <h2 class="cta-title">¿Quieres que te avise<br>cuando esté <em>listo?</em></h2>

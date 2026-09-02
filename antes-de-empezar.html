@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antes de empezar — Jessica Santamaría</title>
-<!-- Google tag (gtag.js) -->
+<title>El lunes empiezo — Jessica Santamaría</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LH9NFKK09"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,640 +12,302 @@
   gtag('config', 'G-0LH9NFKK09');
 </script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#241a13;
+  --ink-2:#34251b;
+  --cream:#f5efe4;
+  --cream-2:#ebe0cf;
+  --paper:#fbf7f0;
+  --rose:#cf9f90;
+  --rust:#b86f52;
+  --gold:#b69062;
+  --line:rgba(36,26,19,.14);
+  --muted:#7c6758;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:"";width:30px;height:1px;background:currentColor}
+.serif{font-family:'Cormorant Garamond',serif}
+.italic{font-style:italic}
 
-  :root {
-    --bg: #e2d8c3;
-    --card: #d4c9b0;
-    --card2: #c4b89e;
-    --dark: #1e1508;
-    --mid: #4a3820;
-    --gold: #6a9000;
-    --white: #f5f0e8;
-  }
+/* HERO */
+.hero{min-height:100svh;background:var(--cream);position:relative;overflow:hidden;border-top:4px solid var(--ink)}
+.hero .wrap{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);align-items:center;gap:60px;padding-top:90px;padding-bottom:70px}
+.hero-kicker{color:var(--rust);margin-bottom:34px}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(88px,12vw,170px);line-height:.78;font-weight:500;letter-spacing:-.045em;max-width:760px}
+.hero h1 span{display:block}
+.hero h1 em{color:var(--rose);font-weight:400}
+.hero-copy{margin-top:34px;max-width:540px;font-size:18px;line-height:1.65;color:var(--muted);border-left:2px solid var(--gold);padding-left:22px}
+.hero-copy strong{color:var(--ink);font-weight:500}
+.hero-actions{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--paper);padding:18px 30px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;transition:.2s}
+.btn:hover{transform:translateY(-2px);background:#000}
+.note{font-size:12px;color:var(--muted);font-style:italic}
+.hero-side{position:relative;min-height:520px}
+.thought{position:absolute;background:rgba(255,255,255,.45);border:1px solid var(--line);backdrop-filter:blur(8px);padding:18px 22px;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;box-shadow:0 12px 35px rgba(36,26,19,.04)}
+.thought.t1{top:4%;right:2%;transform:rotate(2deg)}
+.thought.t2{top:34%;left:0;transform:rotate(-2deg)}
+.thought.t3{bottom:8%;right:4%;transform:rotate(1deg)}
+.hero-orbit{position:absolute;inset:12% 10%;border:1px solid rgba(182,144,98,.28);border-radius:50%;}
+.hero-orbit:before,.hero-orbit:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--rust)}
+.hero-orbit:before{top:10%;left:12%}.hero-orbit:after{right:14%;bottom:18%}
+.hero-ghost{position:absolute;right:-2vw;bottom:-8vw;font-family:'Cormorant Garamond',serif;font-size:34vw;line-height:.7;color:rgba(182,144,98,.06);font-style:italic;pointer-events:none}
 
-  body { background: var(--bg); color: var(--dark); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+/* CYCLE */
+.cycle{background:var(--ink);color:var(--cream);padding:110px 0 120px;position:relative;overflow:hidden}
+.cycle .eyebrow{color:var(--gold);margin-bottom:26px}
+.cycle-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,92px);line-height:.95;font-weight:500;max-width:900px;margin-bottom:60px}
+.cycle-title em{color:var(--rose)}
+.cycle-grid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(245,239,228,.12);border-bottom:1px solid rgba(245,239,228,.12)}
+.step{padding:28px 22px 30px;border-right:1px solid rgba(245,239,228,.12);min-height:210px;position:relative}
+.step:last-child{border-right:none}
+.step-num{font-size:10px;letter-spacing:.2em;color:var(--gold);margin-bottom:46px}
+.step h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;line-height:1.05;margin-bottom:10px}
+.step p{font-size:13px;line-height:1.65;color:rgba(245,239,228,.52)}
+.cycle-result{margin-top:60px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.cycle-result small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.cycle-result blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,8vw,110px);line-height:.85;font-style:italic;color:var(--paper)}
+.cycle-result .question{font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.15;color:var(--rose);max-width:360px;text-align:right}
 
-  .page { max-width: 640px; margin: 0 auto; padding: 0 28px; }
+/* FRICTIONS */
+.frictions{background:var(--paper);padding:110px 0}
+.frictions-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:end;margin-bottom:60px}
+.frictions-head .eyebrow{color:var(--rust);margin-bottom:20px}
+.frictions h2{font-family:'Cormorant Garamond',serif;font-size:clamp(58px,7vw,96px);line-height:.88;font-weight:500}
+.frictions h2 em{color:var(--rust)}
+.frictions-intro{font-size:18px;line-height:1.75;color:var(--muted);max-width:520px}
+.frictions-intro strong{color:var(--ink);font-weight:500}
+.friction-grid{display:grid;grid-template-columns:1.15fr .85fr .9fr;grid-auto-rows:minmax(170px,auto);gap:16px}
+.f-card{border:1px solid var(--line);padding:28px;background:var(--cream);position:relative;overflow:hidden;min-height:180px}
+.f-card.dark{background:var(--ink);color:var(--cream)}
+.f-card.tall{grid-row:span 2}
+.f-card.wide{grid-column:span 2}
+.f-card .tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);margin-bottom:28px}
+.f-card.dark .tag{color:var(--gold)}
+.f-card h3{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1.05;font-weight:500}
+.f-card p{font-size:13px;line-height:1.65;color:var(--muted);margin-top:14px;max-width:340px}
+.f-card.dark p{color:rgba(245,239,228,.55)}
+.f-card .big{position:absolute;right:18px;bottom:-18px;font-family:'Cormorant Garamond',serif;font-size:110px;color:rgba(182,111,82,.08);font-style:italic}
 
-  /* HERO */
-  .hero { padding: 56px 0 40px; }
+/* QUESTIONS — asymmetric */
+.questions{background:var(--cream-2);padding:110px 0;overflow:hidden}
+.questions .eyebrow{color:var(--rust);margin-bottom:26px}
+.questions h2{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,7vw,92px);line-height:.95;font-weight:500;max-width:760px}
+.questions h2 em{color:var(--rose)}
+.question-cloud{position:relative;min-height:540px;margin-top:40px}
+.qbubble{position:absolute;font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.05;border:1px solid rgba(36,26,19,.16);background:rgba(255,255,255,.45);padding:18px 22px}
+.q1{font-size:48px;left:2%;top:9%;transform:rotate(-2deg)}
+.q2{font-size:30px;right:4%;top:4%;transform:rotate(2deg)}
+.q3{font-size:38px;left:25%;top:46%;transform:rotate(1deg)}
+.q4{font-size:28px;right:9%;bottom:12%;transform:rotate(-1deg)}
+.q5{font-size:58px;left:1%;bottom:4%;color:var(--rust);border:none;background:transparent;padding:0}
+.q-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:240px;height:240px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;text-align:center;padding:35px;font-size:13px;line-height:1.8;letter-spacing:.04em}
+.q-center strong{display:block;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.05;margin-bottom:10px}
 
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 24px;
-  }
+/* PERSONAL */
+.personal{background:var(--paper);padding:110px 0}
+.personal-grid{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr);gap:70px;align-items:center}
+.personal-photo-wrap{position:relative}
+.personal-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;filter:saturate(.78) contrast(1.06)}
+.personal-photo-wrap:after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.6)}
+.personal .eyebrow{color:var(--rust);margin-bottom:24px}
+.personal h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,78px);line-height:.95;font-weight:500;margin-bottom:26px}
+.personal h2 em{color:var(--rose)}
+.personal p{font-size:17px;line-height:1.85;color:var(--muted);max-width:560px}
+.personal p strong{color:var(--ink);font-weight:500}
+.personal-quote{margin-top:34px;padding:24px 0 0 24px;border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:31px;line-height:1.2;font-style:italic;max-width:520px}
 
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 12vw, 80px);
-    font-weight: 900;
-    line-height: 1.0;
-    color: var(--dark);
-    margin-bottom: 24px;
-  }
+/* ROADMAP TEASER */
+.roadmap{background:var(--ink);color:var(--cream);padding:110px 0}
+.roadmap-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:54px}
+.roadmap .eyebrow{color:var(--gold)}
+.roadmap h2{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,7vw,88px);font-weight:500;line-height:.92;max-width:720px}
+.roadmap h2 em{color:var(--rose)}
+.roadmap-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(245,239,228,.12);border:1px solid rgba(245,239,228,.12)}
+.rm{background:var(--ink);padding:28px 30px;min-height:150px;position:relative}
+.rm .n{font-size:10px;letter-spacing:.22em;color:var(--gold);margin-bottom:24px}
+.rm h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;line-height:1.05}
+.rm p{margin-top:8px;font-size:13px;color:rgba(245,239,228,.48)}
+.rm.ghost{display:flex;align-items:center;justify-content:center;color:rgba(245,239,228,.22);font-size:44px;font-family:'Cormorant Garamond',serif;font-style:italic}
+.rm.final{grid-column:1/-1;background:var(--cream);color:var(--ink);min-height:120px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.rm.final h3{font-size:44px}.rm.final .n{color:var(--rust);margin:0}
+.roadmap-close{margin-top:36px;max-width:760px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;line-height:1.3;color:rgba(245,239,228,.72)}
 
-  .hero-title em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--gold);
-  }
+/* CTA */
+.cta{background:var(--rust);color:var(--paper);padding:100px 0}
+.cta-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:end}
+.cta .eyebrow{color:var(--paper);opacity:.75;margin-bottom:24px}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(58px,8vw,104px);line-height:.86;font-weight:500}
+.cta h2 em{font-style:italic;color:var(--ink)}
+.cta p{font-size:16px;line-height:1.7;max-width:420px;margin:22px 0 30px;color:rgba(255,255,255,.82)}
+.cta .btn{background:var(--paper);color:var(--ink)}
+.cta-side{font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.2;font-style:italic;color:rgba(255,255,255,.8);padding-bottom:16px}
 
-  .hero-line {
-    width: 48px;
-    height: 2px;
-    background: var(--gold);
-    margin-bottom: 20px;
-  }
+footer{background:var(--ink);color:rgba(245,239,228,.35);padding:20px 40px;text-align:center;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
 
-  .hero-sub {
-    font-size: 15px;
-    color: var(--mid);
-    font-weight: 300;
-    line-height: 1.7;
-  }
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
 
-  /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--card2);
-    margin: 0 28px;
-  }
-
-  /* SECTION */
-  .section { padding: 40px 0; }
-
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 20px;
-  }
-
-  .big-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 5vw, 32px);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--dark);
-    line-height: 1.35;
-    margin-bottom: 20px;
-  }
-
-  .body-text {
-    font-size: 15px;
-    line-height: 1.9;
-    color: var(--dark);
-    font-weight: 300;
-    margin-bottom: 12px;
-  }
-
-  .body-text strong { color: var(--dark); font-weight: 500; }
-
-  /* QUOTE BLOCK */
-  .quote-block { position: relative; margin-bottom: 20px; }
-  .quote-mark {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(52px, 10vw, 72px);
-    font-weight: 900;
-    color: var(--dark);
-    line-height: 1.0;
-    display: inline;
-    margin-right: 2px;
-  }
-  .big-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 4vw, 26px);
-    font-weight: 900;
-    color: var(--dark);
-    line-height: 1.2;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .big-quote em { font-style: italic; font-weight: 400; color: var(--gold); }
-
-  /* SEPARATOR WITH STAR */
-  .sep-star {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 28px;
-    margin: 0;
-  }
-  .divider-line {
-    border: none;
-    border-top: 1px solid var(--card2);
-    flex: 1;
-  }
-  .star-dec {
-    color: var(--gold);
-    font-size: 14px;
-    margin-left: 12px;
-  }
-
-  /* SECTION PILL */
-  .section-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--card);
-    border: 1px solid var(--card2);
-    border-radius: 40px;
-    padding: 6px 14px;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--mid);
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-  .pill-star { color: var(--gold); font-size: 10px; }
-
-  /* Q CARDS */
-  .q-cards { display: flex; flex-direction: column; gap: 8px; }
-  .q-card {
-    background: var(--card);
-    border: 0.5px solid var(--card2);
-    border-radius: 12px;
-    padding: 16px 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .q-num { font-size: 12px; font-weight: 500; color: var(--gold); flex-shrink: 0; width: 22px; }
-  .q-sep-line { width: 1.5px; height: 22px; background: var(--mid); flex-shrink: 0; opacity: 0.25; }
-  .q-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-style: italic;
-    color: var(--dark);
-    line-height: 1.3;
-    flex: 1;
-  }
-  .q-arrow {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--card2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: var(--mid);
-    flex-shrink: 0;
-  }
-
-  /* GUILT CARDS */
-  .guilt-cards { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
-
-  .guilt-card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 18px 20px;
-    border-left: 3px solid var(--gold);
-  }
-
-  .guilt-card p {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-style: italic;
-    color: var(--mid);
-  }
-
-  /* REVEAL */
-  .reveal-card {
-    background: var(--dark);
-    border-radius: 14px;
-    padding: 32px 24px;
-    margin: 24px 0;
-    text-align: center;
-  }
-
-  .reveal-card p {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 4vw, 24px);
-    font-style: italic;
-    color: var(--white);
-    line-height: 1.55;
-  }
-
-  .reveal-card span { color: var(--gold); }
-
-  /* ROADMAP */
-  .roadmap-section { background: var(--dark); }
-  .roadmap-section .section { padding: 40px 0; }
-  .roadmap-section .section-label { color: var(--gold); }
-
-  .roadmap {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  .roadmap-item {
-    background: rgba(255,255,255,0.05);
-    border: 0.5px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 10px 16px;
-    width: 100%;
-  }
-
-  .roadmap-first { border-color: var(--gold); }
-  .roadmap-last { border-color: var(--gold); background: rgba(106,144,0,0.15); }
-
-  .roadmap-text {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--white);
-  }
-
-  .roadmap-last .roadmap-text { color: var(--gold); }
-
-  .roadmap-sub {
-    font-size: 11px;
-    color: rgba(250,246,238,0.4);
-    font-weight: 300;
-    margin-top: 3px;
-    line-height: 1.4;
-  }
-
-  .roadmap-arrow {
-    font-size: 14px;
-    color: var(--gold);
-    padding: 2px 16px;
-  }
-
-  .roadmap-ghost {
-    background: transparent;
-    border: 0.5px dashed rgba(255,255,255,0.15);
-    border-radius: 8px;
-    padding: 10px 16px;
-    width: 100%;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .roadmap-ghost-text {
-    font-size: 16px;
-    color: rgba(250,246,238,0.2);
-    letter-spacing: 0.2em;
-  }
-
-  .roadmap-closing {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    font-style: italic;
-    color: rgba(250,246,238,0.5);
-    margin-top: 24px;
-    line-height: 1.6;
-    text-align: center;
-  }
-  .story-personal {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
-
-  .story-photo {
-    width: 160px;
-    height: 240px;
-    object-fit: cover;
-    object-position: center 30%;
-    border-radius: 12px;
-    flex-shrink: 0;
-  }
-
-  .story-personal-text { flex: 1; }
-
-  .story-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
-
-  .story-bio {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--mid);
-    font-weight: 300;
-  }
-
-  .friction-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 6vw, 36px);
-    font-weight: 900;
-    color: var(--dark);
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-
-  .friction-title em { font-style: italic; font-weight: 400; color: var(--gold); }
-
-  .info-card {
-    background: var(--white);
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 12px;
-    border: 1px solid var(--card2);
-  }
-
-  .info-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 14px;
-  }
-
-  .info-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--card);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
-  .info-bold {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--dark);
-    line-height: 1.5;
-    margin-bottom: 4px;
-  }
-
-  .info-underline {
-    width: 32px;
-    height: 2px;
-    background: var(--gold);
-    margin-top: 8px;
-  }
-
-  .info-body {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--mid);
-    font-weight: 300;
-  }
-
-  .info-body strong { color: var(--dark); font-weight: 500; }
-
-  .closing-simple {
-    background: var(--dark);
-    border-radius: 14px;
-    padding: 28px 24px;
-    margin-top: 12px;
-    text-align: center;
-  }
-
-  .closing-simple p {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-style: italic;
-    color: var(--white);
-    line-height: 1.6;
-  }
-
-  /* CTA */
-  .cta-section {
-    padding: 56px 0;
-    text-align: center;
-  }
-
-  .cta-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 12px;
-    opacity: 0.7;
-  }
-
-  .cta-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 4vw, 26px);
-    font-weight: 900;
-    color: var(--dark);
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  .cta-title em { font-style: italic; font-weight: 400; color: var(--gold); }
-
-  .cta-sub {
-    font-size: 15px;
-    color: var(--mid);
-    font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 32px;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--dark);
-    color: #d4f04a;
-    padding: 18px 40px;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 40px;
-  }
-
-  .cta-note {
-    font-size: 12px;
-    color: var(--mid);
-    margin-top: 16px;
-    font-style: italic;
-    font-weight: 300;
-  }
-
-  footer {
-    border-top: 1px solid var(--card2);
-    padding: 20px 28px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--mid);
-    letter-spacing: 0.08em;
-  }
+@media(max-width:900px){
+  .wrap{padding:0 24px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:90px}
+  .hero-side{min-height:320px}
+  .cycle-grid{grid-template-columns:1fr 1fr}.step:nth-child(2n){border-right:none}.step{border-bottom:1px solid rgba(245,239,228,.12)}
+  .frictions-head{grid-template-columns:1fr;gap:28px}.friction-grid{grid-template-columns:1fr 1fr}.f-card.wide{grid-column:span 2}.f-card.tall{grid-row:auto}
+  .personal-grid{grid-template-columns:1fr;gap:40px}.personal-photo{aspect-ratio:4/3}
+  .roadmap-list{grid-template-columns:1fr}
+  .rm.final{grid-column:auto;display:block}.rm.final h3{margin-top:8px}
+  .cta-inner{grid-template-columns:1fr}.cta-side{font-size:26px}
+}
+@media(max-width:620px){
+  .hero h1{font-size:clamp(74px,24vw,110px)}
+  .hero-copy{font-size:16px}.hero-side{min-height:290px}.thought{font-size:19px;padding:14px 16px}.thought.t2{top:38%}
+  .cycle{padding:84px 0}.cycle-grid{grid-template-columns:1fr}.step{border-right:none}.cycle-result{grid-template-columns:1fr}.cycle-result .question{text-align:left}
+  .frictions,.questions,.personal,.roadmap,.cta{padding:84px 0}
+  .friction-grid{grid-template-columns:1fr}.f-card.wide{grid-column:auto}
+  .question-cloud{min-height:620px}.q1{font-size:34px}.q2{font-size:24px}.q3{font-size:30px;left:10%;top:50%}.q4{font-size:24px;right:3%}.q5{font-size:42px}.q-center{width:210px;height:210px}
+  .roadmap h2{font-size:54px}.cta h2{font-size:70px}
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="page">
-  <div class="hero">
-    <div class="hero-eyebrow">Para ti, que llevas tiempo queriendo empezar</div>
-    <h1 class="hero-title">Quiero<br>empezar<br>el gym,<br>pero nunca<br>soy <em>constante.</em></h1>
-    <div class="hero-line"></div>
-    <p class="hero-sub">Antes de empezar otra vez, lee esto.</p>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- QUOTE -->
-<div class="page">
-  <div class="section">
-    <div class="quote-block">
-      <p class="big-quote">"Este lunes sí <em>empiezo."</em></p>
-    </div>
-    <p class="body-text" style="color: var(--dark);">Buscas un gimnasio. Compras ropa.<br>Guardas rutinas. Llegas motivada.</p>
-    <p class="body-text" style="color: var(--dark);">Pero una vez estás ahí, <strong class="green-bold">empiezan las preguntas.</strong></p>
-  </div>
-</div>
-
-<div class="sep-star">
-  <hr class="divider-line">
-  <span class="star-dec">✦</span>
-</div>
-
-<!-- PREGUNTAS -->
-<div class="page">
-  <div class="section">
-    <div class="section-pill"><span class="pill-star">✦</span> LO QUE PASA DENTRO DEL GYM</div>
-    <div class="q-cards">
-      <div class="q-card"><span class="q-num">01</span><span class="q-sep-line"></span><span class="q-text">¿Qué hago primero?</span><span class="q-arrow">→</span></div>
-      <div class="q-card"><span class="q-num">02</span><span class="q-sep-line"></span><span class="q-text">¿Esta máquina para qué sirve?</span><span class="q-arrow">→</span></div>
-      <div class="q-card"><span class="q-num">03</span><span class="q-sep-line"></span><span class="q-text">¿Cuánto peso pongo?</span><span class="q-arrow">→</span></div>
-      <div class="q-card"><span class="q-num">04</span><span class="q-sep-line"></span><span class="q-text">¿Cuántas repeticiones hago?</span><span class="q-arrow">→</span></div>
-      <div class="q-card"><span class="q-num">05</span><span class="q-sep-line"></span><span class="q-text">¿Y ahora qué sigue?</span><span class="q-arrow">→</span></div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- STORY -->
-<div class="page">
-  <div class="section">
-    <p class="body-text">Ves a todo el mundo entrenando como si supiera perfectamente qué hacer y tú intentas disimular que estás perdida.</p>
-    <p class="body-text">Tal vez buscas al entrenador. Te da una rutina. La sigues. Pero muchas veces ni siquiera entiendes qué estás haciendo ni por qué.</p>
-    <p class="body-text">Durante unos días vas porque estás motivada. Después faltas uno. Luego otro. No ves los cambios que esperabas.</p>
-    <p class="body-text">Y terminas pensando:</p>
-
-    <div class="guilt-cards">
-      <div class="guilt-card"><p>"Yo no soy constante."</p></div>
-      <div class="guilt-card"><p>"Me falta disciplina."</p></div>
-      <div class="guilt-card"><p>"Siempre empiezo y abandono."</p></div>
-    </div>
-
-    <p class="body-text">Pero antes de volver a culparte, quiero mostrarte algo.</p>
-
-    <div class="reveal-card">
-      <p>Ir al gym no empieza cuando cruzas la puerta del gimnasio.<br><span>Empieza mucho antes.</span></p>
-    </div>
-
-    <p class="body-text">Antes de poder ser constante hay cosas que necesitas entender, decidir y preparar. Y cuando no lo haces, cada visita al gym se llena de pequeñas dificultades que hacen que volver sea cada vez más pesado.</p>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- HISTORIA PERSONAL -->
-<div class="page">
-  <div class="section">
-    <div class="story-personal">
-      <img src="https://nuvoracx.github.io/Nuvora/jessica-gym.jpg" alt="Jessica Santamaría" class="story-photo">
-      <div class="story-personal-text">
-        <p class="story-bio">No siempre fui constante.<br><br>
-        También llegué al gym sin saber bien qué hacer, con pena, dependiendo de otros y sin entender qué necesitaba preparar antes.<br><br>
-        Esta guía nace de todo lo que tuve que aprender antes de poder sostenerlo.</p>
+<section class="hero">
+  <div class="hero-ghost">Gym</div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow hero-kicker">Para ti, que llevas tiempo queriendo empezar</div>
+      <h1><span>El lunes</span><span><em>empiezo.</em></span></h1>
+      <p class="hero-copy">Lo que necesitas saber <strong>antes de empezar el gym</strong> para no terminar diciendo otra vez: “yo no soy constante”.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://wa.me/971541321219?text=Hola!%20Vi%20tu%20página%20y%20quiero%20que%20me%20avises%20cuando%20el%20ebook%20esté%20listo.">Quiero el ebook →</a>
+        <span class="note">Es gratis. Te aviso cuando esté listo.</span>
       </div>
     </div>
-  </div>
-</div>
-
-<hr class="divider">
-<div class="page">
-  <div class="section">
-    <div class="section-label">El problema tiene nombre</div>
-    <h2 class="friction-title">A esas pequeñas barreras<br>las llamamos <em>fricciones.</em></h2>
-
-    <div class="info-card">
-      <p class="info-body">Este ebook no es otra rutina.<br>Tampoco quiero decirte que tienes que ser más disciplinada.</p>
-      <p class="info-body">Quiero enseñarte qué deberías tener en cuenta <strong>antes de empezar</strong>, para que esta vez no dependas únicamente de la motivación.</p>
-    </div>
-
-    <div class="closing-simple">
-      <p><em>Empezar es fácil.</em></p>
-      <p><em>Lo difícil es construir todo lo que hace posible continuar.</em></p>
+    <div class="hero-side" aria-hidden="true">
+      <div class="hero-orbit"></div>
+      <div class="thought t1">“Esta vez sí.”</div>
+      <div class="thought t2">“Voy 5 días.”</div>
+      <div class="thought t3">“Me voy a poner juiciosa.”</div>
     </div>
   </div>
-</div>
+</section>
 
-<hr class="divider">
-
-<!-- ROADMAP -->
-<div class="roadmap-section">
-  <div class="page">
-    <div class="section">
-      <div class="section-label">Qué cubre este ebook</div>
-      <div class="roadmap">
-        <div class="roadmap-item roadmap-first">
-          <div class="roadmap-text">QUIERO EMPEZAR</div>
-        </div>
-        <div class="roadmap-arrow">↓</div>
-        <div class="roadmap-item">
-          <div class="roadmap-text">DEFINO MI OBJETIVO</div>
-          <div class="roadmap-sub">¿Qué quiero conseguir realmente?</div>
-        </div>
-        <div class="roadmap-arrow">↓</div>
-        <div class="roadmap-item">
-          <div class="roadmap-text">VEO QUÉ CABE EN MI VIDA</div>
-          <div class="roadmap-sub">Días · horario · tiempo · energía</div>
-        </div>
-        <div class="roadmap-arrow">↓</div>
-        <div class="roadmap-item">
-          <div class="roadmap-text">REDUZCO LAS FRICCIONES</div>
-          <div class="roadmap-sub">Lo que hace más difícil continuar.</div>
-        </div>
-        <div class="roadmap-arrow">↓</div>
-        <div class="roadmap-item roadmap-ghost"><div class="roadmap-ghost-text">…</div></div>
-        <div class="roadmap-arrow">↓</div>
-        <div class="roadmap-item roadmap-ghost"><div class="roadmap-ghost-text">…</div></div>
-        <div class="roadmap-arrow">↓</div>
-        <div class="roadmap-item roadmap-last">
-          <div class="roadmap-text">CONSTRUYO CONSTANCIA</div>
-        </div>
+<section class="cycle reveal">
+  <div class="wrap">
+    <div class="eyebrow">El ciclo que ya conoces</div>
+    <h2 class="cycle-title">No abandonas de la nada.<br><em>Hay una historia antes.</em></h2>
+    <div class="cycle-grid">
+      <div class="step"><div class="step-num">01</div><h3>Decido empezar</h3><p>Estoy motivada. Esta vez sí voy en serio.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Llego al gym</h3><p>No tengo claro qué hacer, pero improviso.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Empiezo a dudar</h3><p>Pregunto, copio, cambio de máquina, espero al entrenador.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Empiezo a faltar</h3><p>Un día no puedo. Otro me da pereza. Otro no veo sentido.</p></div>
+      <div class="step"><div class="step-num">05</div><h3>Abandono</h3><p>Y convierto todo el proceso en una conclusión sobre mí.</p></div>
+    </div>
+    <div class="cycle-result">
+      <div>
+        <small>La conclusión</small>
+        <blockquote>“Yo no soy constante.”</blockquote>
       </div>
-      <p class="roadmap-closing">Porque antes de copiar la rutina de alguien que ya está ahí, necesitas construir todo lo que te permita llegar a ti también.</p>
+      <div class="question">¿Y si el problema empezó mucho antes de faltar?</div>
     </div>
   </div>
-</div>
+</section>
 
-<hr class="divider">
-<div class="page">
-  <div class="cta-section">
-    <h2 class="cta-title">¿Quieres que te avise<br>cuando esté <em>listo?</em></h2>
-    <p class="cta-sub">El ebook está en camino. Escríbeme y te lo envío apenas salga.</p>
-    <a href="https://wa.me/9710541321219?text=Hola!%20Vi%20tu%20página%20y%20quiero%20que%20me%20avises%20cuando%20el%20ebook%20esté%20listo." class="cta-btn">
-      Quiero el ebook →
-    </a>
+<section class="frictions reveal">
+  <div class="wrap">
+    <div class="frictions-head">
+      <div>
+        <div class="eyebrow">El problema tiene nombre</div>
+        <h2>Se llaman<br><em>fricciones.</em></h2>
+      </div>
+      <p class="frictions-intro">Son todas esas pequeñas cosas que hacen que repetir una conducta cueste más de lo que debería. <strong>Por separado parecen pequeñas. Juntas pueden hacer que volver mañana se sienta demasiado pesado.</strong></p>
+    </div>
+
+    <div class="friction-grid">
+      <article class="f-card tall dark"><div class="tag">Claridad</div><h3>No sé qué hacer cuando llego.</h3><p>Si cada entrenamiento empieza resolviendo desde cero qué toca, entrenar exige demasiadas decisiones.</p><div class="big">?</div></article>
+      <article class="f-card"><div class="tag">Tiempo</div><h3>“No tengo tiempo.”</h3><p>Quizá el plan que elegiste nunca cupo en tu vida real.</p></article>
+      <article class="f-card"><div class="tag">Pena</div><h3>Me siento perdida.</h3><p>No saber usar una máquina también puede convertirse en una razón para no volver.</p></article>
+      <article class="f-card wide"><div class="tag">Dependencia</div><h3>Si el entrenador no está, no sé qué sigue.</h3><p>Una rutina que no entiendes puede hacerte depender de otra persona para cada decisión.</p></article>
+      <article class="f-card"><div class="tag">Progreso</div><h3>No veo cambios.</h3><p>Si no sabes qué medir, es fácil pensar demasiado pronto que “no funciona”.</p></article>
+    </div>
   </div>
-</div>
+</section>
 
-<footer>Jessica Santamaría · Antes de empezar</footer>
+<section class="questions reveal">
+  <div class="wrap">
+    <div class="eyebrow">Cinco minutos dentro del gym</div>
+    <h2>Y de repente aparecen <em>todas las preguntas.</em></h2>
+    <div class="question-cloud">
+      <div class="qbubble q1">¿Qué hago primero?</div>
+      <div class="qbubble q2">¿Esta máquina para qué sirve?</div>
+      <div class="qbubble q3">¿Cuánto peso pongo?</div>
+      <div class="qbubble q4">¿Cuántas repeticiones hago?</div>
+      <div class="qbubble q5">¿Y ahora qué sigue?</div>
+      <div class="q-center"><div><strong>No llegues a improvisar.</strong>Tu primer día debería empezar mucho antes de cruzar la puerta.</div></div>
+    </div>
+  </div>
+</section>
 
+<section class="personal reveal">
+  <div class="wrap personal-grid">
+    <div class="personal-photo-wrap">
+      <img class="personal-photo" src="https://nuvoracx.github.io/Nuvora/jessica-gym.jpg" alt="Jessica Santamaría en el gimnasio">
+    </div>
+    <div>
+      <div class="eyebrow">Por qué estoy escribiendo esto</div>
+      <h2>Yo también llegué<br><em>sin saber qué hacer.</em></h2>
+      <p>Me daba pena ir sola. Pedí que me acompañaran. Dependía del entrenador. Seguía rutinas que muchas veces no entendía. Y como ya tomamos demasiadas decisiones durante el día, llegar al gym a seguir decidiendo <strong>“¿y ahora qué?”</strong> hacía todo más pesado.</p>
+      <div class="personal-quote">No necesitaba más motivación. Necesitaba quitar cosas del camino.</div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap reveal">
+  <div class="wrap">
+    <div class="roadmap-head">
+      <div>
+        <div class="eyebrow">Qué cubre este ebook</div>
+        <h2>Entre “quiero empezar” y “soy constante” hay <em>mucho más.</em></h2>
+      </div>
+    </div>
+
+    <div class="roadmap-list">
+      <div class="rm"><div class="n">01</div><h3>Quiero empezar</h3></div>
+      <div class="rm"><div class="n">02</div><h3>Defino mi objetivo</h3><p>¿Qué quiero conseguir realmente?</p></div>
+      <div class="rm"><div class="n">03</div><h3>Veo qué cabe en mi vida</h3><p>Días · horario · tiempo · energía</p></div>
+      <div class="rm"><div class="n">04</div><h3>Reduzco las fricciones</h3><p>Lo que hace más difícil continuar.</p></div>
+      <div class="rm ghost">…</div>
+      <div class="rm ghost">…</div>
+      <div class="rm final"><div><div class="n">FINAL</div><h3>Construyo constancia</h3></div><div>→</div></div>
+    </div>
+    <p class="roadmap-close">Porque antes de copiar la rutina de alguien que ya está ahí, necesitas construir todo lo que te permita avanzar desde donde estás tú.</p>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <div class="wrap cta-inner">
+    <div>
+      <div class="eyebrow">Lista de espera</div>
+      <h2>¿Quieres ser de las primeras en <em>tenerlo?</em></h2>
+      <p>El ebook está en camino. Escríbeme y te aviso cuando esté listo.</p>
+      <a class="btn" href="https://wa.me/971541321219?text=Hola!%20Vi%20tu%20página%20y%20quiero%20que%20me%20avises%20cuando%20el%20ebook%20esté%20listo.">Quiero el ebook →</a>
+    </div>
+    <div class="cta-side">Empezar es fácil.<br>Preparar todo lo que te permita continuar es otra cosa.</div>
+  </div>
+</section>
+
+<footer>Jessica Santamaría · El lunes empiezo</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

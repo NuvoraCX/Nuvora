@@ -264,40 +264,200 @@
     align-items: center;
   }
 
-  .work-list { display: flex; flex-direction: column; gap: 0; }
+  /* FEATURED PROJECTS */
+  .work { padding: 48px 28px; border-top: 1px solid var(--border); }
 
-  .work-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
+  .work-header { margin-bottom: 32px; }
+
+  .work-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 8px;
+  }
+
+  .work-sub {
+    font-size: 13px;
+    color: rgba(240,236,228,0.6);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  .project-num {
+    font-size: 10px;
+    color: var(--lime);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  /* FEATURED PROJECT */
+  .project-featured {
+    display: block;
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
     text-decoration: none;
-    transition: opacity 0.15s;
+    margin-bottom: 12px;
+    padding: 32px 28px;
+    transition: border-color 0.2s, transform 0.2s;
   }
 
-  .work-row:first-child { border-top: 1px solid var(--border); }
-  .work-row:hover { opacity: 0.6; }
+  .project-featured:hover {
+    border-color: rgba(200,240,74,0.3);
+    transform: translateY(-2px);
+  }
 
-  .work-row-left {
+  .project-featured-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .project-featured-accent {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--lime), transparent);
+    z-index: 1;
+  }
+
+  .project-featured-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .project-featured-top {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 16px;
   }
 
-  .work-row-num { font-size: 11px; color: var(--lime); font-weight: 700; flex-shrink: 0; }
+  .project-badge {
+    font-size: 7px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--lime);
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
 
-  .work-row-title {
+  .project-featured-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 4vw, 26px);
+    font-size: clamp(28px, 7vw, 44px);
     font-style: italic;
     color: var(--cream);
-    margin-bottom: 3px;
+    line-height: 1.1;
+    margin-bottom: 8px;
   }
 
-  .work-row-tag { font-size: 10px; color: var(--mid); font-weight: 300; letter-spacing: 0.05em; }
+  .project-featured-tag {
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
 
-  .work-row-arrow { font-size: 18px; color: var(--lime); flex-shrink: 0; }
+  .project-featured-desc {
+    font-size: 13px;
+    color: rgba(240,236,228,0.72);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 20px;
+  }
+
+  .project-featured-cta {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lime);
+    font-weight: 700;
+  }
+
+  /* SECONDARY PROJECTS */
+  .projects-secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .project-secondary {
+    display: block;
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 24px 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    min-height: 180px;
+  }
+
+  .project-secondary:hover {
+    border-color: rgba(200,240,74,0.2);
+    transform: translateY(-2px);
+  }
+
+  .project-secondary:hover .project-secondary-bg {
+    opacity: 0.7;
+  }
+
+  .project-secondary-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-secondary-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .project-secondary-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 3.5vw, 19px);
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.2;
+    margin: 8px 0 6px;
+  }
+
+  .project-secondary-tag {
+    font-size: 9px;
+    color: rgba(240,236,228,0.45);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+
+  .project-secondary-desc {
+    font-size: 11px;
+    color: rgba(240,236,228,0.55);
+    font-weight: 300;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-arrow {
+    font-size: 16px;
+    color: var(--lime);
+    margin-top: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .project-secondary:hover .project-arrow { transform: translateX(5px); }
+  .project-secondary:hover { border-color: rgba(200,240,74,0.3); transform: translateY(-2px); }
 
   /* INCLUDES */
   .includes {
@@ -437,44 +597,52 @@
   </div>
 </div>
 
-<!-- SELECTED WORK -->
+<!-- FEATURED PROJECTS -->
 <section class="work fade-in" id="work">
-  <div class="work-label">
-    <span>Selected Work</span>
+  <div class="work-header">
+    <div class="work-label">Featured Projects</div>
+    <p class="work-sub">A selection of digital work built with clarity, structure and conversion in mind.</p>
   </div>
-  <div class="work-list">
 
-    <a href="https://nuvoracx.github.io/Nuvora" class="work-row" target="_blank">
-      <div class="work-row-left">
-        <span class="work-row-num">01</span>
-        <div>
-          <div class="work-row-title">Nuvora</div>
-          <div class="work-row-tag">Landing · B2B · Dubai · English</div>
-        </div>
+  <!-- FEATURED — Coach Ryan -->
+  <a href="https://nuvoracx.github.io/Nuvora/coach-ryan.html" class="project-featured" target="_blank">
+    <div class="project-featured-bg" style="background: linear-gradient(135deg, #111010 0%, #1a0f08 100%);"></div>
+    <div class="project-featured-content">
+      <div class="project-featured-top">
+        <span class="project-num">01</span>
+        <span class="project-badge">Featured</span>
       </div>
-      <span class="work-row-arrow">→</span>
+      <h2 class="project-featured-title">Coach Ryan Late</h2>
+      <div class="project-featured-tag">Landing · Fitness · Dubai · English</div>
+      <p class="project-featured-desc">A bold, premium landing page built to position a Dubai trainer with more authority and presence.</p>
+      <div class="project-featured-cta">View project →</div>
+    </div>
+    <div class="project-featured-accent"></div>
+  </a>
+
+  <!-- SECONDARY PROJECTS -->
+  <div class="projects-secondary">
+
+    <a href="https://nuvoracx.github.io/Nuvora" class="project-secondary" target="_blank" style="--hover-tint: rgba(180,150,80,0.08);">
+      <div class="project-secondary-bg" style="background: linear-gradient(135deg, #0e0c08 0%, #1a1710 100%);"></div>
+      <div class="project-secondary-content">
+        <span class="project-num">02</span>
+        <h3 class="project-secondary-title">Nuvora</h3>
+        <div class="project-secondary-tag">Landing · B2B · Dubai · English</div>
+        <p class="project-secondary-desc">Built to present a WhatsApp CX offer with more clarity and trust.</p>
+        <div class="project-arrow">→</div>
+      </div>
     </a>
 
-    <a href="https://nuvoracx.github.io/Nuvora/antes-de-empezar.html" class="work-row" target="_blank">
-      <div class="work-row-left">
-        <span class="work-row-num">02</span>
-        <div>
-          <div class="work-row-title">Before Starting the Gym</div>
-          <div class="work-row-tag">Ebook · Wellness · Spanish</div>
-        </div>
+    <a href="https://nuvoracx.github.io/Nuvora/antes-de-empezar.html" class="project-secondary" target="_blank">
+      <div class="project-secondary-bg" style="background: linear-gradient(135deg, #0e0c08 0%, #131008 100%);"></div>
+      <div class="project-secondary-content">
+        <span class="project-num">03</span>
+        <h3 class="project-secondary-title">Before Starting the Gym</h3>
+        <div class="project-secondary-tag">Ebook · Wellness · Spanish</div>
+        <p class="project-secondary-desc">A landing page to turn an ebook concept into a waitlist-ready offer.</p>
+        <div class="project-arrow">→</div>
       </div>
-      <span class="work-row-arrow">→</span>
-    </a>
-
-    <a href="https://nuvoracx.github.io/Nuvora/coach-ryan.html" class="work-row" target="_blank">
-      <div class="work-row-left">
-        <span class="work-row-num">03</span>
-        <div>
-          <div class="work-row-title">Coach Ryan Late</div>
-          <div class="work-row-tag">Landing · Fitness · Dubai · English</div>
-        </div>
-      </div>
-      <span class="work-row-arrow">→</span>
     </a>
 
   </div>
@@ -501,4 +669,18 @@
 </section>
 
 <footer>
-  <span c
+  <span class="footer-logo">Jessica Santamaría</span>
+  <span class="footer-tag">Dubai · 2026</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

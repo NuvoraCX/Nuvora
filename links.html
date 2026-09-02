@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jessica Santamaría</title>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LH9NFKK09"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,244 +12,294 @@
   gtag('config', 'G-0LH9NFKK09');
 </script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Inter:wght@300;400;500&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --bg: #e8dfc8;
-    --card: #d8ccb4;
-    --card2: #c8bca0;
-    --dark: #1e1508;
-    --mid: #4a3820;
-    --gold: #6a9000;
-    --white: #f5f0e8;
-  }
-
   body {
-    background: var(--bg);
-    color: var(--dark);
+    min-height: 100vh;
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    background: #f5f0e8;
+    position: relative;
+  }
+
+  /* FULL BG IMAGE */
+  .bg-image {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: url('https://nuvoracx.github.io/Nuvora/bg-waves.jpg') center center / cover no-repeat;
+  }
+
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(245,240,232,0.05) 0%,
+      rgba(245,240,232,0.15) 50%,
+      rgba(200,185,165,0.3) 100%
+    );
+  }
+
+  /* COLOR WAVE ANIMATION */
+  .bg-wave {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(212,195,170,0) 0%,
+      rgba(212,195,170,0.25) 50%,
+      rgba(180,160,130,0) 100%
+    );
+    background-size: 100% 200%;
+    animation: waveFlow 6s ease-in-out infinite;
+  }
+
+  @keyframes waveFlow {
+    0% { background-position: 0% 0%; opacity: 0.4; }
+    50% { background-position: 0% 100%; opacity: 0.8; }
+    100% { background-position: 0% 0%; opacity: 0.4; }
+  }
+
+  /* CONTENT */
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 56px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 48px 24px;
   }
 
-  .wrap { max-width: 420px; width: 100%; }
-
-  /* HEADER */
-  .avatar-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto 20px;
-    gap: 6px;
-  }
-
+  /* AVATAR */
   .avatar-ring {
-    width: 64px;
-    height: 64px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    border: 1px solid var(--card2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.7);
+    margin-bottom: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.1s forwards;
   }
 
-  .avatar-initial {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--mid);
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
-  .avatar-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-
+  /* NAME */
   .name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--dark);
-    text-align: center;
-    margin-bottom: 6px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+    font-weight: 600;
+    color: #1e1508;
+    margin-bottom: 5px;
+    text-shadow: 0 1px 8px rgba(255,255,255,0.5);
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.15s forwards;
   }
 
   .tagline {
-    font-size: 12px;
-    color: var(--mid);
-    text-align: center;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6a5a40;
+    margin-bottom: 3px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.2s forwards;
+  }
+
+  .location {
+    font-size: 11px;
+    color: #8a7a60;
+    margin-bottom: 40px;
     font-weight: 300;
-    line-height: 1.6;
-    margin-bottom: 36px;
-    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.25s forwards;
   }
 
-  .tagline span { color: var(--gold); font-weight: 500; }
-
-  /* CARDS */
-  .cards { display: flex; flex-direction: column; gap: 12px; }
-
-  .card {
-    background: var(--white);
-    border: 0.5px solid var(--card2);
-    border-radius: 14px;
-    padding: 20px 22px;
-    text-decoration: none;
+  /* GLASS BUTTONS */
+  .buttons {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: border-color 0.15s, transform 0.15s;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 36px;
   }
 
-  .card:hover { border-color: var(--mid); transform: translateY(-1px); }
-
-  .card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: var(--card);
+  .btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    font-size: 20px;
-  }
-
-  .card-body { flex: 1; }
-
-  .card-label {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 12px;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #1e1508;
+    font-size: 13px;
     font-weight: 500;
-    margin-bottom: 3px;
-  }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 3px;
-    line-height: 1.3;
-  }
-
-  .card-desc {
-    font-size: 12px;
-    color: var(--mid);
-    font-weight: 300;
-    line-height: 1.5;
-  }
-
-  .card-arrow {
-    font-size: 16px;
-    color: var(--card2);
-    flex-shrink: 0;
-  }
-
-  /* COMING SOON */
-  .card-soon {
-    opacity: 0.65;
-    cursor: default;
-  }
-
-  .card-soon:hover { transform: none; border-color: var(--card2); }
-
-  .soon-badge {
-    font-size: 9px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    background: var(--card);
-    color: var(--mid);
-    padding: 3px 8px;
-    border-radius: 20px;
-    flex-shrink: 0;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
   }
 
-  /* FOOTER */
-  .footer {
+  .btn:nth-child(1) { animation-delay: 0.3s; }
+  .btn:nth-child(2) { animation-delay: 0.38s; }
+  .btn:nth-child(3) { animation-delay: 0.46s; }
+
+  .btn:hover {
+    background: rgba(255,255,255,0.55);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    width: 100%;
     text-align: center;
-    margin-top: 32px;
-    font-size: 11px;
-    color: var(--card2);
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.54s forwards;
+  }
+
+  .contact-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6a5a40;
+    margin-bottom: 12px;
+  }
+
+  .contact-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+
+  .contact-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .contact-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .contact-icon:hover { background: rgba(255,255,255,0.55); }
+  .contact-icon svg { width: 16px; height: 16px; }
+
+  .btn-title { font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #1e1508; margin-bottom: 2px; }
+  .btn-sub { font-size: 9px; font-weight: 300; color: #9a8a70; letter-spacing: 0.02em; text-transform: none; opacity: 0.8; }
+    margin-top: 28px;
+    font-size: 10px;
+    color: rgba(106,90,64,0.5);
     letter-spacing: 0.08em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
 <body>
+
+<div class="bg-image"></div>
+<div class="bg-overlay"></div>
+<div class="bg-wave"></div>
+
 <div class="wrap">
 
-  <div class="avatar-wrap">
-    <div class="avatar-ring">
-      <span class="avatar-initial">J</span>
-    </div>
-    <div class="avatar-dot"></div>
+  <div class="avatar-ring">
+    <img src="https://nuvoracx.github.io/Nuvora/jessica-profile.jpg" alt="Jessica Santamaría">
   </div>
+
   <div class="name">Jessica Santamaría</div>
-  <div class="tagline">
-    <span style="color: var(--gold); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; font-size: 11px;">Business · Habits · Personal Growth</span><br>
-    Dubai
+  <div class="tagline">Business · Habits · Personal Growth</div>
+  <div class="location">Dubai</div>
+
+  <div class="buttons">
+    <a href="https://nuvoracx.github.io/Nuvora" class="btn">
+      <div>
+        <div class="btn-title">Nuvora — WhatsApp CX</div>
+        <div class="btn-sub">Review · Redesign · Automate</div>
+      </div>
+    </a>
+    <a href="https://nuvoracx.github.io/Nuvora/portfolio.html" class="btn">
+      <div>
+        <div class="btn-title">Digital Presence</div>
+        <div class="btn-sub">Web, messaging and digital experiences</div>
+      </div>
+    </a>
+    <a href="https://nuvoracx.github.io/Nuvora/antes-de-empezar.html" class="btn">
+      <div>
+        <div class="btn-title">Ebook — Quiero empezar el gym</div>
+        <div class="btn-sub">Lo que necesitas saber antes de empezar</div>
+      </div>
+    </a>
   </div>
 
-  <div class="cards">
+  <div class="contact-section">
+    <div class="contact-label">Contact me</div>
+    <div class="contact-divider"></div>
+    <div class="contact-icons">
 
-    <a href="https://nuvoracx.github.io/Nuvora" class="card">
-      <div class="card-icon">💬</div>
-      <div class="card-body">
-        <div class="card-label">Nuvora</div>
-        <div class="card-title">WhatsApp Customer Experience</div>
-        <div class="card-desc">Review · Redesign · Automate</div>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
+      <a href="https://wa.me/971541321219" class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#6a5a40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+      </a>
 
-    <a href="https://nuvoracx.github.io/Nuvora/portfolio.html" class="card">
-      <div class="card-icon">🖥️</div>
-      <div class="card-body">
-        <div class="card-label">Digital Presence</div>
-        <div class="card-title">Make your business look as professional as it really is.</div>
-        <div class="card-desc">Web, messaging and digital experiences designed to build trust and turn visits into opportunities.</div>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
+      <a href="mailto:jessica@nuvora.ae" class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#6a5a40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </a>
 
-    <a href="https://nuvoracx.github.io/Nuvora/antes-de-empezar.html" class="card">
-      <div class="card-icon">📖</div>
-      <div class="card-body">
-        <div class="card-label">El lunes empiezo</div>
-        <div class="card-title">Ebook · Quiero empezar el gym</div>
-        <div class="card-desc">Lo que necesitas saber antes de empezar para no abandonar.</div>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
+      <a href="https://instagram.com/jessica_santamaria_" class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#6a5a40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
 
-    <a href="https://wa.me/971541321219?text=Hola!%20Vi%20tu%20perfil%20y%20quiero%20saber%20más." class="card">
-      <div class="card-icon" style="background: var(--card);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#4a3820" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="card-label">Contact</div>
-        <div class="card-title">Let's talk</div>
-        <div class="card-desc">Tell me what you're working on.</div>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
+    </div>
   </div>
 
   <div class="footer">Dubai · 2026</div>
+
 </div>
+
 </body>
 </html>

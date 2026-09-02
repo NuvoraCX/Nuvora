@@ -160,7 +160,9 @@ footer{background:var(--ink);color:rgba(245,239,228,.35);padding:20px 40px;text-
   .hero-side{min-height:320px}
   .cycle-grid{grid-template-columns:1fr 1fr}.step:nth-child(2n){border-right:none}.step{border-bottom:1px solid rgba(245,239,228,.12)}
   .frictions-head{grid-template-columns:1fr;gap:28px}.friction-grid{grid-template-columns:1fr 1fr}.f-card.wide{grid-column:span 2}.f-card.tall{grid-row:auto}
-  .personal-grid{grid-template-columns:1fr;gap:40px}.personal-photo{aspect-ratio:4/3}
+  .personal-grid{grid-template-columns:1fr;gap:40px}
+  .personal-photo-wrap{max-width:680px;margin:0 auto}
+  .personal-photo{aspect-ratio:4/5;object-position:center 72%}
   .roadmap-list{grid-template-columns:1fr}
   .rm.final{grid-column:auto;display:block}.rm.final h3{margin-top:8px}
   .cta-inner{grid-template-columns:1fr}.cta-side{font-size:26px}
@@ -171,7 +173,18 @@ footer{background:var(--ink);color:rgba(245,239,228,.35);padding:20px 40px;text-
   .cycle{padding:84px 0}.cycle-grid{grid-template-columns:1fr}.step{border-right:none}.cycle-result{grid-template-columns:1fr}.cycle-result .question{text-align:left}
   .frictions,.questions,.personal,.roadmap,.cta{padding:84px 0}
   .friction-grid{grid-template-columns:1fr}.f-card.wide{grid-column:auto}
-  .question-cloud{min-height:620px}.q1{font-size:34px}.q2{font-size:24px}.q3{font-size:30px;left:10%;top:50%}.q4{font-size:24px;right:3%}.q5{font-size:42px}.q-center{width:210px;height:210px}
+  .questions h2{max-width:100%;font-size:clamp(46px,15vw,68px)}
+  .question-cloud{min-height:0;display:grid;grid-template-columns:1fr;gap:18px;margin-top:34px}
+  .qbubble,.q-center{position:relative;left:auto;right:auto;top:auto;bottom:auto;transform:none}
+  .qbubble{display:inline-block;max-width:max-content;padding:14px 18px;background:rgba(255,255,255,.62);box-shadow:0 8px 22px rgba(36,26,19,.05)}
+  .q1{font-size:28px;justify-self:start;margin-left:8%}
+  .q2{font-size:22px;justify-self:end;margin-right:4%}
+  .q-center{justify-self:center;width:215px;height:215px;margin:8px 0 10px}
+  .q3{font-size:24px;justify-self:start;margin-left:2%}
+  .q4{font-size:22px;justify-self:end;margin-right:6%}
+  .q5{font-size:38px;justify-self:start;margin-left:0;background:transparent;border:none;padding:0;color:var(--rust)}
+  .personal-photo{aspect-ratio:4/5;object-position:center 78%}
+  .personal-photo-wrap:after{inset:14px}
   .roadmap h2{font-size:54px}.cta h2{font-size:70px}
 }
 </style>

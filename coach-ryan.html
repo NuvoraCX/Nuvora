@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryan Late — Coach</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #070707;
+  --off-black: #0f0f0d;
+  --card: #141412;
+  --ivory: #f2ede0;
+  --ivory-dim: #a09b8c;
+  --orange: #c8501a;
+  --orange-mid: rgba(200,80,26,0.15);
+  --orange-low: rgba(200,80,26,0.06);
+  --border: rgba(255,255,255,0.07);
+  --border-o: rgba(200,80,26,0.22);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--ivory);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 40px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(7,7,7,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ivory); text-decoration: none;
+}
+.nav-links { display: flex; gap: 36px; }
+.nav-link {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ivory-dim); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--ivory); }
+.nav-cta {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ivory); text-decoration: none;
+  background: var(--orange);
+  padding: 10px 22px;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  height: 100vh; min-height: 680px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://nuvoracx.github.io/Nuvora/coach-hero.jpg') center 18% / cover no-repeat;
+  animation: zoom 24s ease-in-out infinite alternate;
+}
+@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+.hero-shade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(7,7,7,1) 0%, rgba(7,7,7,0.5) 35%, rgba(7,7,7,0.1) 65%),
+    linear-gradient(to right, rgba(7,7,7,0.4) 0%, transparent 50%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 40px 60px;
+  max-width: 900px;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+  opacity: 0; animation: up 0.6s ease 0.1s forwards;
+}
+.hero-tag-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; }
+.hero-tag-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--orange);
+}
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(72px, 14vw, 160px);
+  font-weight: 900; line-height: 0.88;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+.hero-h1 .l1 {
+  display: block; color: var(--ivory);
+  opacity: 0; transform: translateX(-40px);
+  animation: slideR 0.8s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
+}
+.hero-h1 .l2 {
+  display: block; color: var(--ivory);
+  opacity: 0; transform: translateX(40px);
+  animation: slideL 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+}
+.hero-h1 .l3 {
+  display: block;
+  font-style: italic; font-weight: 700;
+  color: var(--orange); font-size: 0.58em;
+  letter-spacing: 0.04em;
+  opacity: 0; transform: translateY(20px);
+  animation: up 0.7s ease 0.6s forwards;
+}
+@keyframes slideR { to { opacity:1; transform:translateX(0); } }
+@keyframes slideL { to { opacity:1; transform:translateX(0); } }
+@keyframes up { to { opacity:1; transform:translateY(0) translateX(0); } }
+
+.hero-bottom {
+  display: flex; align-items: center; gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  opacity: 0; animation: up 0.5s ease 0.85s forwards;
+}
+.hero-sub {
+  font-size: 13px; font-weight: 300;
+  color: var(--ivory-dim); line-height: 1.7;
+  max-width: 260px;
+}
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange); color: var(--ivory);
+  padding: 16px 32px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.hero-btn:hover { opacity: 0.85; }
+
+/* ── STATS BAR ── */
+.statsbar {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.sbar-item {
+  padding: 40px 40px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.sbar-item:last-child { border-right: none; }
+.sbar-item::before {
+  content: '';
+  position: absolute; top: 0; left: 40px; right: 40px;
+  height: 2px; background: var(--orange);
+}
+.sbar-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 900; color: var(--ivory);
+  line-height: 1; letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.sbar-num em {
+  font-style: normal; color: var(--orange);
+  font-size: 0.55em; font-weight: 300;
+}
+.sbar-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+/* ── MARQUEE ── */
+.marquee {
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  padding: 13px 0;
+  background: var(--off-black);
+}
+.marquee-track {
+  display: flex; white-space: nowrap;
+  animation: ticker 20s linear infinite;
+}
+.marquee-item {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: #777770; padding: 0 28px; flex-shrink: 0;
+}
+.marquee-sep { color: var(--orange); opacity: 0.7; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── ABOUT ── */
+.about {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 85vh;
+  border-bottom: 1px solid var(--border);
+}
+.about-photo {
+  position: relative; overflow: hidden;
+}
+.about-photo-img {
+  position: absolute; inset: 0;
+  background: url('https://nuvoracx.github.io/Nuvora/coach-hero.jpg') center 15% / cover;
+  filter: brightness(0.55) contrast(1.1) saturate(0.75);
+  transition: transform 0.9s ease;
+}
+.about-photo:hover .about-photo-img { transform: scale(1.04); }
+.about-photo-edge {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 70%, var(--black) 100%);
+}
+.about-photo-bar {
+  position: absolute; top: 0; bottom: 0; left: 0;
+  width: 3px; background: var(--orange);
+}
+.about-text {
+  padding: 80px 56px 80px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.section-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px;
+}
+.eyebrow-bar { width: 28px; height: 2px; background: var(--orange); }
+.eyebrow-text {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--orange);
+}
+.about-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 900; text-transform: uppercase;
+  line-height: 0.92; letter-spacing: -0.01em;
+  margin-bottom: 28px; color: var(--ivory);
+}
+.about-h2 em {
+  display: block; font-style: italic;
+  color: var(--orange); font-weight: 700;
+}
+.about-body {
+  font-size: 14px; font-weight: 300;
+  color: var(--ivory-dim); line-height: 2;
+  max-width: 360px; margin-bottom: 36px;
+}
+.about-cta {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--orange); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 12px;
+  transition: gap 0.25s;
+  border-bottom: 1px solid var(--border-o);
+  padding-bottom: 6px; width: fit-content;
+}
+.about-cta:hover { gap: 22px; }
+
+/* ── PILLARS ── */
+.pillars {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-bottom: 1px solid var(--border);
+  background: var(--off-black);
+}
+.pillar {
+  padding: 48px 40px;
+  border-right: 1px solid var(--border);
+}
+.pillar:last-child { border-right: none; }
+.pillar-icon {
+  font-size: 28px; margin-bottom: 20px;
+}
+.pillar-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--ivory); margin-bottom: 12px;
+}
+.pillar-body {
+  font-size: 12px; font-weight: 300;
+  color: var(--ivory-dim); line-height: 1.9;
+}
+
+/* ── SERVICES ── */
+.services { padding: 80px 40px; border-bottom: 1px solid var(--border); }
+.services-head {
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px; padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.services-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 900; text-transform: uppercase;
+  letter-spacing: -0.01em; color: var(--ivory);
+  line-height: 0.9;
+}
+.services-count {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 88px; font-weight: 300;
+  color: rgba(200,80,26,0.08);
+  letter-spacing: -0.04em; line-height: 1;
+}
+
+.svc { border-top: 1px solid var(--border); cursor: pointer; }
+.svc:last-child { border-bottom: 1px solid var(--border); }
+.svc-header {
+  display: grid; grid-template-columns: 44px 1fr 44px;
+  align-items: center; padding: 22px 0;
+}
+.svc-num {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.15em; color: var(--orange);
+}
+.svc-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(22px, 3.5vw, 40px);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: rgba(242,237,224,0.65);
+  line-height: 1; transition: color 0.2s;
+}
+.svc:hover .svc-name,
+.svc.open .svc-name { color: var(--ivory); }
+.svc.open .svc-name { color: var(--orange); }
+
+.svc-toggle {
+  width: 32px; height: 32px;
+  border: 1px solid var(--border-o);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange); font-size: 20px; font-weight: 300;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+  justify-self: end;
+}
+.svc.open .svc-toggle {
+  transform: rotate(45deg);
+  background: var(--orange); color: var(--ivory); border-color: var(--orange);
+}
+.svc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.svc.open .svc-body { max-height: 180px; }
+.svc-desc {
+  padding: 0 0 28px 44px;
+  font-size: 13px; font-weight: 300;
+  color: var(--ivory-dim); line-height: 2;
+  max-width: 520px;
+  border-left: 2px solid var(--orange-mid);
+  margin-left: 44px; padding-left: 20px;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-bottom: 1px solid var(--border);
+  background: var(--off-black);
+}
+.testi {
+  padding: 52px 36px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.testi:last-child { border-right: none; }
+.testi::before {
+  content: '';
+  position: absolute; top: 0; left: 36px; right: 36px;
+  height: 1px; background: var(--border-o);
+}
+.testi-q {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 60px; font-weight: 900;
+  color: var(--orange); line-height: 0.7;
+  margin-bottom: 20px; opacity: 0.3;
+}
+.testi-text {
+  font-size: 13px; font-weight: 300; font-style: italic;
+  color: var(--ivory); line-height: 1.9;
+  margin-bottom: 28px;
+}
+.testi-author { display: flex; align-items: center; gap: 10px; }
+.testi-dash { width: 14px; height: 1px; background: var(--orange); }
+.testi-name {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+/* ── CTA ── */
+.cta {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+.cta-left {
+  background: var(--orange);
+  padding: 80px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.cta-left::before {
+  content: 'GO';
+  position: absolute; bottom: -20px; right: -10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 200px; font-weight: 900;
+  color: rgba(0,0,0,0.08); line-height: 1;
+  letter-spacing: -0.04em; text-transform: uppercase;
+  pointer-events: none; user-select: none;
+}
+.cta-label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 20px;
+}
+.cta-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 900; text-transform: uppercase;
+  line-height: 0.88; letter-spacing: -0.01em;
+  color: #fff; margin-bottom: 36px;
+}
+.cta-h2 em { font-style: italic; display: block; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--black); color: var(--ivory);
+  padding: 16px 32px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; width: fit-content;
+  transition: opacity 0.2s;
+}
+.cta-btn:hover { opacity: 0.85; }
+
+.cta-right {
+  background: var(--card);
+  padding: 80px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 24px;
+}
+.cta-detail {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+.cta-detail:hover { border-color: var(--border-o); }
+.cta-detail-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--orange-low); border: 1px solid var(--border-o);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.cta-detail-title {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ivory); margin-bottom: 5px;
+}
+.cta-detail-sub {
+  font-size: 12px; font-weight: 300;
+  color: var(--ivory-dim); line-height: 1.6;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 24px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(242,237,224,0.15);
+}
+.footer-links { display: flex; gap: 28px; }
+.footer-link {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(242,237,224,0.18); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: rgba(242,237,224,0.5); }
+.footer-copy { font-size: 9px; color: rgba(242,237,224,0.1); letter-spacing: 0.08em; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 20px 48px; }
+  .statsbar { grid-template-columns: 1fr; }
+  .sbar-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .about { grid-template-columns: 1fr; }
+  .about-photo { height: 300px; }
+  .about-text { padding: 48px 20px; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--border); }
+  .services { padding: 48px 20px; }
+  .testimonials { grid-template-columns: 1fr; }
+  .testi { border-right: none; }
+  .cta { grid-template-columns: 1fr; }
+  .cta-left, .cta-right { padding: 56px 20px; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Ryan Late</a>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+  <a href="https://wa.me/971541321219?text=Hi!%20I%20want%20to%20train%20with%20Coach%20Ryan." class="nav-cta">Book now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span class="hero-tag-text">Dubai · Personal Training · Est. 2017</span>
+    </div>
+    <h1 class="hero-h1">
+      <span class="l1">Build</span>
+      <span class="l2">Strong.</span>
+      <span class="l3">perform longer.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Training for men and women who want real, lasting results.</p>
+      <a href="https://wa.me/971541321219?text=Hi!%20I%20want%20to%20train%20with%20Coach%20Ryan." class="hero-btn">Start training →</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="statsbar reveal">
+  <div class="sbar-item">
+    <div class="sbar-num">8<em>+</em></div>
+    <div class="sbar-label">Years coaching</div>
+  </div>
+  <div class="sbar-item">
+    <div class="sbar-num">200<em>+</em></div>
+    <div class="sbar-label">Clients transformed</div>
+  </div>
+  <div class="sbar-item">
+    <div class="sbar-num">24<em>/7</em></div>
+    <div class="sbar-label">Coach access</div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Strength Training</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Body Recomposition</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Performance</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Online Coaching</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Dubai Based</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Men & Women</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Strength Training</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Body Recomposition</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Performance</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Online Coaching</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Dubai Based</span>
+    <span class="marquee-item marquee-sep">·</span>
+    <span class="marquee-item">Men & Women</span>
+    <span class="marquee-item marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <div class="about-photo">
+    <div class="about-photo-img"></div>
+    <div class="about-photo-edge"></div>
+    <div class="about-photo-bar"></div>
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow">
+      <div class="eyebrow-bar"></div>
+      <span class="eyebrow-text">About Ryan</span>
+    </div>
+    <h2 class="about-h2">
+      No fads.<br>No shortcuts.<br>
+      <em>Just results.</em>
+    </h2>
+    <p class="about-body">I work with men and women at every level. My approach combines progressive strength training, movement quality and performance coaching — built around your life, not someone else's plan.</p>
+    <a href="https://wa.me/971541321219" class="about-cta">Train with me →</a>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<div class="pillars reveal">
+  <div class="pillar">
+    <div class="pillar-icon">⚡</div>
+    <div class="pillar-title">Progressive Overload</div>
+    <p class="pillar-body">Every session pushes past your previous limits — structured, measured, intentional. No plateau.</p>
+  </div>
+  <div class="pillar">
+    <div class="pillar-icon">🎯</div>
+    <div class="pillar-title">Built Around You</div>
+    <p class="pillar-body">No templates. Every program adapts to your schedule, your body and your real goals.</p>
+  </div>
+  <div class="pillar">
+    <div class="pillar-icon">📈</div>
+    <div class="pillar-title">Long Game Mindset</div>
+    <p class="pillar-body">Sustainable change over fast fixes. Results that hold — months and years from now.</p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services reveal" id="services">
+  <div class="services-head">
+    <div>
+      <div class="section-eyebrow" style="margin-bottom:12px">
+        <div class="eyebrow-bar"></div>
+        <span class="eyebrow-text">What I offer</span>
+      </div>
+      <h2 class="services-h2">The Work.</h2>
+    </div>
+    <span class="services-count">04</span>
+  </div>
+
+  <div class="svc" onclick="toggleSvc(this)">
+    <div class="svc-header">
+      <span class="svc-num">01</span>
+      <span class="svc-name">Strength & Hypertrophy</span>
+      <span class="svc-toggle">+</span>
+    </div>
+    <div class="svc-body">
+      <div class="svc-desc">Build muscle and increase strength with progressive programs designed around your body, your goals and your schedule — no guesswork.</div>
+    </div>
+  </div>
+
+  <div class="svc" onclick="toggleSvc(this)">
+    <div class="svc-header">
+      <span class="svc-num">02</span>
+      <span class="svc-name">Body Recomposition</span>
+      <span class="svc-toggle">+</span>
+    </div>
+    <div class="svc-body">
+      <div class="svc-desc">Lose fat and build muscle simultaneously. A structured approach combining smart training and nutrition guidance to transform how your body looks and performs.</div>
+    </div>
+  </div>
+
+  <div class="svc" onclick="toggleSvc(this)">
+    <div class="svc-header">
+      <span class="svc-num">03</span>
+      <span class="svc-name">Performance & Conditioning</span>
+      <span class="svc-toggle">+</span>
+    </div>
+    <div class="svc-body">
+      <div class="svc-desc">For athletes and high performers. Train your endurance, speed and resilience — perform at your best in sport, in work and in life.</div>
+    </div>
+  </div>
+
+  <div class="svc" onclick="toggleSvc(this)">
+    <div class="svc-header">
+      <span class="svc-num">04</span>
+      <span class="svc-name">Online Coaching</span>
+      <span class="svc-toggle">+</span>
+    </div>
+    <div class="svc-body">
+      <div class="svc-desc">Fully personalized programs, weekly check-ins and direct coach access — wherever you are in the world.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials reveal">
+  <div class="testi">
+    <div class="testi-q">"</div>
+    <p class="testi-text">Ryan completely changed how I approach training. Down 12kg and stronger than ever — and I actually enjoy going to the gym now.</p>
+    <div class="testi-author">
+      <div class="testi-dash"></div>
+      <span class="testi-name">Marcus T. — Dubai</span>
+    </div>
+  </div>
+  <div class="testi">
+    <div class="testi-q">"</div>
+    <p class="testi-text">I've worked with coaches before, but none with Ryan's attention to detail. My performance in CrossFit went through the roof in 3 months.</p>
+    <div class="testi-author">
+      <div class="testi-dash"></div>
+      <span class="testi-name">Layla K. — Abu Dhabi</span>
+    </div>
+  </div>
+  <div class="testi">
+    <div class="testi-q">"</div>
+    <p class="testi-text">Online coaching with Ryan is the real deal. Weekly check-ins, instant replies, and a program that actually fits my life as a busy professional.</p>
+    <div class="testi-author">
+      <div class="testi-dash"></div>
+      <span class="testi-name">James R. — Remote</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta reveal" id="contact">
+  <div class="cta-left">
+    <div class="cta-label">Ready to start?</div>
+    <h2 class="cta-h2">
+      Stop<br>
+      <em>Waiting.</em>
+    </h2>
+    <a href="https://wa.me/971541321219?text=Hi!%20I%20want%20to%20train%20with%20Coach%20Ryan." class="cta-btn">Book your first session →</a>
+  </div>
+  <div class="cta-right">
+    <div class="cta-detail">
+      <div class="cta-detail-icon">📍</div>
+      <div>
+        <div class="cta-detail-title">Location</div>
+        <div class="cta-detail-sub">Dubai Marina & JLT — home visits available</div>
+      </div>
+    </div>
+    <div class="cta-detail">
+      <div class="cta-detail-icon">⚡</div>
+      <div>
+        <div class="cta-detail-title">Response time</div>
+        <div class="cta-detail-sub">Usually replies within the hour via WhatsApp</div>
+      </div>
+    </div>
+    <div class="cta-detail">
+      <div class="cta-detail-icon">🌍</div>
+      <div>
+        <div class="cta-detail-title">Online worldwide</div>
+        <div class="cta-detail-sub">Remote clients across 12+ countries</div>
+      </div>
+    </div>
+    <a href="https://wa.me/971541321219?text=Hi!%20Tell%20me%20more%20about%20online%20coaching." style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border-o);color:var(--ivory-dim);padding:14px 24px;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:color 0.2s,border-color 0.2s;margin-top:8px;">Online coaching →</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Ryan Late</span>
+  <div class="footer-links">
+    <a href="#about" class="footer-link">About</a>
+    <a href="#services" class="footer-link">Services</a>
+    <a href="https://wa.me/971541321219" class="footer-link">WhatsApp</a>
+  </div>
+  <span class="footer-copy">Dubai · Personal Training · 2026</span>
+</footer>
+
+<script>
+  function toggleSvc(el) {
+    const open = el.classList.contains('open');
+    document.querySelectorAll('.svc').forEach(s => s.classList.remove('open'));
+    if (!open) el.classList.add('open');
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

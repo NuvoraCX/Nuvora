@@ -364,22 +364,6 @@ body { display:flex; justify-content:center; }
 </body>
 </html>
 
-<script>
-  // Staggered scroll-in for cards
-  const cards = document.querySelectorAll('.card, .collab-block');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        const idx = Array.from(cards).indexOf(entry.target);
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, idx * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
 
-  cards.forEach(card => observer.observe(card));
-</script>
 </body>
 </html>

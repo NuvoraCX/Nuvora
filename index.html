@@ -4,272 +4,751 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuvora — WhatsApp Customer Experience + AI</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LH9NFKK09"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-0LH9NFKK09');
-</script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --ink:#171713;
+  --forest:#18372d;
+  --green:#28c86f;
+  --cream:#f6f0e7;
+  --paper:#fffdfa;
+  --blush:#efe2dc;
+  --sage:#e7efe8;
+  --sand:#ece3d6;
+  --muted:#6d7069;
+  --line:rgba(23,23,19,.11);
+  --shadow:0 20px 60px rgba(24,35,26,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+img{max-width:100%;display:block}
 
-  :root {
-    --cream: #f5f2ec;
-    --dark: #1a1917;
-    --mid: #6b6860;
-    --gold: #b89a6a;
-    --light: #e8e4dc;
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(246,240,231,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(23,23,19,.07);
+}
+.nav-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 0;gap:12px;
+}
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  flex-shrink:0;
+}
+.nav-mid{
+  font-size:10px;text-transform:uppercase;letter-spacing:.18em;
+  color:var(--muted);
+}
+.nav-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:10px 16px;border-radius:999px;background:var(--ink);
+  color:#fff;font-size:11px;font-weight:700;
+  white-space:nowrap;flex-shrink:0;
+}
+
+section{padding:72px 0}
+.eyebrow{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green);font-weight:700;margin-bottom:12px;
+}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500}
+h1{font-size:clamp(36px,6.2vw,82px);line-height:.98;letter-spacing:-.035em;}
+h2{font-size:clamp(28px,4.2vw,56px);line-height:1.05;letter-spacing:-.03em;}
+h3{font-size:clamp(22px,3vw,34px);line-height:1.08;}
+p{line-height:1.72;color:var(--muted);}
+.lead{font-size:16px;max-width:630px;}
+
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 20px;border-radius:999px;font-weight:700;font-size:12px;
+  position:relative;overflow:hidden;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease,background .28s ease,color .28s ease;
+  will-change:transform;
+}
+.btn:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.08) 35%,rgba(255,255,255,.26) 50%,transparent 70%);
+  transform:translateX(-130%);transition:transform .7s ease;
+}
+.btn span{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(23,23,19,.10);}
+.btn:hover:before{transform:translateX(130%);}
+.btn:active{transform:translateY(0);}
+.btn .arrow-inline{transition:transform .25s ease;}
+.btn:hover .arrow-inline{transform:translateX(3px);}
+.btn-dark{background:var(--ink);color:#fff;box-shadow:0 8px 18px rgba(23,23,19,.08);}
+.btn-dark:hover{box-shadow:0 14px 30px rgba(23,23,19,.16);}
+.btn-light{background:rgba(255,255,255,.72);border:1px solid var(--line);}
+.btn-light:hover{border-color:rgba(23,23,19,.18);background:#fffdfa;}
+
+/* ── HERO ── */
+.hero{
+  padding:64px 0 88px;
+  background:linear-gradient(180deg,var(--paper) 0%,var(--cream) 100%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4.5vw;
+}
+.hero-copy .lead{margin-top:22px}
+.hero-mini{margin-top:34px;max-width:860px;}
+.method-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.method-strip{
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1.1fr auto 1fr;
+  gap:10px;align-items:center;
+}
+.method-item{
+  min-height:58px;padding:14px 16px;border-radius:18px;
+  border:1px solid rgba(23,23,19,.10);background:rgba(255,255,255,.54);
+  display:flex;flex-direction:column;justify-content:center;gap:4px;
+}
+.method-no{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700;}
+.method-text{font-size:13px;line-height:1.15;color:var(--ink);font-weight:700;}
+.method-item.principle{background:rgba(231,239,232,.82);border-color:rgba(24,55,45,.10);text-align:center;}
+.method-item.principle .method-text{font-size:12px;color:var(--forest);}
+.method-arrow{font-size:16px;color:rgba(23,23,19,.32);text-align:center;transform:translateY(1px);}
+
+.hero-visual{position:relative;min-height:620px;}
+.soft-block{position:absolute;border-radius:28px;}
+.sb1{width:86%;height:74%;right:0;top:0;background:var(--blush);}
+.sb2{width:48%;height:30%;left:0;bottom:8%;background:var(--sage);}
+.hero-phone{
+  position:absolute;left:12%;top:8%;
+  width:min(350px,72vw);
+  background:#111713;border-radius:42px;padding:12px;
+  box-shadow:var(--shadow);
+}
+.phone-screen{border-radius:32px;background:#efe9e1;overflow:hidden;height:580px;}
+.phone-top{
+  display:flex;align-items:center;gap:10px;padding:14px;
+  background:#f8f8f4;border-bottom:1px solid #e6e0d8;
+}
+.bubble-avatar{
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  background:var(--green);color:white;font-weight:700;font-size:11px;
+}
+.bubble-name{font-size:11px;font-weight:700}
+.bubble-sub{font-size:8px;color:#849086}
+.wa-body{
+  padding:14px 12px;display:flex;flex-direction:column;gap:8px;
+  background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)),
+  repeating-linear-gradient(45deg,#eee9e1,#eee9e1 4px,#ece7df 4px,#ece7df 8px);
+  height:100%;
+}
+.msg{max-width:84%;font-size:10px;line-height:1.4;padding:9px 10px;border-radius:11px;}
+.msg.in{background:#fff;align-self:flex-start;border-top-left-radius:4px}
+.msg.out{background:#d9fdd3;align-self:flex-end;border-top-right-radius:4px}
+.wait{
+  align-self:center;font-size:8px;color:#8a5a49;background:#f4ddd1;
+  border:1px solid #e5c7bb;padding:5px 8px;border-radius:999px;
+}
+.note-card{
+  position:absolute;background:rgba(255,253,250,.94);border:1px solid var(--line);
+  border-radius:18px;padding:12px 14px;width:170px;box-shadow:0 12px 30px rgba(23,23,19,.07);
+}
+.note-card h4{font-size:11px;font-weight:700;margin-bottom:4px;}
+.note-card p{font-size:10px;line-height:1.5;}
+.note-1{left:0;top:22%}
+.note-2{right:4%;bottom:6%}
+
+/* ── SPLITS & CARDS ── */
+.split{display:grid;grid-template-columns:1.02fr .98fr;gap:5vw;align-items:center;}
+.section-card{
+  background:var(--paper);border:1px solid rgba(23,23,19,.08);
+  border-radius:28px;padding:38px;box-shadow:0 10px 30px rgba(23,23,19,.03);
+}
+.problem-points{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
+.problem{background:rgba(255,255,255,.52);border:1px solid var(--line);border-radius:24px;padding:24px 20px;}
+.problem .num{
+  width:34px;height:34px;border-radius:50%;background:var(--blush);
+  display:grid;place-items:center;font-weight:700;font-size:12px;margin-bottom:14px;
+}
+.problem h4{font-size:15px;margin-bottom:8px;}
+.problem p{font-size:13px}
+
+/* ── STACK VISUAL ── */
+.stack-visual{position:relative;min-height:460px;}
+.panel{
+  position:absolute;background:var(--paper);border:1px solid rgba(23,23,19,.09);
+  box-shadow:var(--shadow);border-radius:22px;
+}
+.panel-a{left:2%;top:2%;width:44%;padding:22px;transform:rotate(-4deg)}
+.panel-b{right:4%;top:12%;width:58%;padding:24px}
+.panel-c{left:20%;bottom:8%;width:62%;padding:22px;transform:rotate(2deg)}
+.mini-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:10px;}
+.checklist{display:grid;gap:10px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--ink);}
+.check i{
+  width:18px;height:18px;border-radius:50%;background:var(--sage);
+  display:grid;place-items:center;font-style:normal;color:var(--forest);
+  font-size:10px;font-weight:700;flex:0 0 auto;
+}
+
+/* ── COMPARE ── */
+.alt{background:var(--blush)}
+.alt .section-card{background:rgba(255,253,250,.76)}
+.compare-layout{display:grid;grid-template-columns:1fr 70px 1fr;gap:14px;align-items:center;margin-top:32px;}
+.compare-col{text-align:center}
+.compare-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+.before{color:#9a6857}
+.after{color:#1c7b4d}
+.compare-phone{margin:0 auto;width:min(300px,82vw);background:#121713;border-radius:34px;padding:10px;box-shadow:var(--shadow);}
+.compare-screen{border-radius:26px;background:#efe9e1;overflow:hidden;height:620px;}
+.compare-screen .phone-top{padding:12px}
+.compare-screen .wa-body{padding:12px 10px}
+.compare-screen .msg{font-size:9.5px}
+.compare-screen .wait{font-size:7.8px}
+.arrow{font-size:34px;color:var(--green);text-align:center;}
+.caption{margin-top:12px;font-size:12px;max-width:280px;margin-inline:auto;color:var(--muted)}
+
+/* ── ORGANIZED GRID ── */
+.organized-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:5vw;align-items:start;}
+.review-lines{display:grid;gap:0;border-top:1px solid var(--line);margin-top:6px;}
+.review-line{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);}
+.review-line strong{font-size:12px}
+.review-line span{font-size:12px;color:var(--muted)}
+
+/* ── PROCESS BAND ── */
+.process-band{background:var(--ink);color:#fff;border-radius:28px;padding:42px;}
+.process-band p{color:rgba(255,255,255,.62)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:28px;}
+.step{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;}
+.step .step-no{font-family:'Playfair Display',serif;font-size:32px;color:rgba(255,255,255,.24);}
+.step h4{margin:10px 0 8px;font-size:16px}
+.step p{font-size:13px;line-height:1.65}
+
+/* ── STATS ── */
+.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px;}
+.stat{padding-top:18px;border-top:1px solid var(--line);}
+.stat .big{font-family:'Playfair Display',serif;font-size:54px;color:var(--forest);line-height:1;}
+.stat b{display:block;font-size:14px;margin:6px 0 8px;}
+.stat p{font-size:12px}
+.stat small{display:block;margin-top:10px;font-size:10px;color:var(--muted);font-style:italic}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.chips span{padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.54);font-size:12px;color:var(--muted);}
+
+/* ── CTA ── */
+.cta{text-align:center;background:linear-gradient(135deg,#17382d 0%,#0f1512 100%);color:#fff;}
+.cta p{color:rgba(255,255,255,.66);max-width:620px;margin:18px auto 0}
+.cta .btn-row{justify-content:center}
+.cta .btn-dark{background:#fff;color:var(--forest)}
+
+/* ── FOOTER ── */
+footer{padding:26px 0;background:#101412;color:rgba(255,255,255,.4);font-size:11px;}
+.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+/* ── DELIVERABLE PREVIEW ── */
+.deliverable-preview{min-height:500px}
+.audit-preview{left:0;top:0;width:54%;padding:20px;transform:rotate(-3deg)}
+.flow-preview{right:2%;top:80px;width:62%;padding:20px;z-index:2}
+.outcome-preview{left:13%;bottom:4%;width:66%;padding:20px;transform:rotate(1.5deg);z-index:3}
+.audit-row{display:grid;grid-template-columns:10px 1fr;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid var(--line);}
+.audit-row:last-child{border-bottom:0}
+.audit-dot{width:8px;height:8px;border-radius:50%;margin-top:4px}
+.audit-dot.bad{background:#c9785e}
+.audit-dot.warn{background:#d9a75e}
+.audit-row strong{display:block;font-size:11px;margin-bottom:2px}
+.audit-row small{display:block;font-size:9px;line-height:1.45;color:var(--muted)}
+.mini-wa{background:#121713;border-radius:20px;padding:7px;box-shadow:0 12px 28px rgba(23,23,19,.12);}
+.mini-wa-top{display:flex;align-items:center;gap:8px;background:#f7f7f4;padding:9px 10px;border-radius:14px 14px 0 0;}
+.mini-avatar{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-size:9px;font-weight:700;}
+.mini-wa-top strong{display:block;font-size:10px}
+.mini-wa-top small{display:block;font-size:8px;color:#879188}
+.mini-wa-body{background:#eee8df;border-radius:0 0 14px 14px;padding:10px;display:flex;flex-direction:column;gap:6px;}
+.mini-msg{max-width:88%;padding:7px 8px;border-radius:9px;font-size:8.5px;line-height:1.35;}
+.mini-msg.in{align-self:flex-start;background:#fff}
+.mini-msg.out{align-self:flex-end;background:#d9fdd3}
+.outcome-line{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);}
+.outcome-line:last-child{border-bottom:0}
+.outcome-line strong{font-size:10.5px}
+.outcome-line span{font-size:9px;font-weight:700;color:var(--forest);background:var(--sage);border-radius:999px;padding:5px 7px;white-space:nowrap;}
+
+/* ── CTA ANIMATIONS ── */
+@keyframes ctaFloatPrimary{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes ctaGlow{0%,100%{box-shadow:0 8px 18px rgba(23,23,19,.08)}50%{box-shadow:0 14px 30px rgba(23,23,19,.16)}}
+@keyframes arrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.hero-actions .btn-dark,.hero .btn-row .btn-dark{animation:ctaFloatPrimary 2.8s ease-in-out infinite,ctaGlow 2.8s ease-in-out infinite;}
+.hero-actions .btn-dark .arrow-inline,.hero .btn-row .btn-dark .arrow-inline{animation:arrowNudge 1.8s ease-in-out infinite;}
+.hero-actions .btn-light .arrow-inline,.hero .btn-row .btn-light .arrow-inline{animation:arrowNudge 2.4s ease-in-out infinite;}
+
+/* ── HERO MOCKUP MOTION ── */
+@keyframes heroPhoneFloat{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-10px) rotate(.4deg)}}
+@keyframes heroShapePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes heroChatCycle{0%,5%{opacity:0;transform:translateY(8px)}12%,86%{opacity:1;transform:translateY(0)}94%,100%{opacity:0;transform:translateY(-2px)}}
+.hero .hero-phone{animation:heroPhoneFloat 4.6s ease-in-out infinite;transform-origin:center;}
+.hero .sb1{animation:heroShapePulse 6.5s ease-in-out infinite;transform-origin:center;}
+.hero .wa-body>.msg,.hero .wa-body>.wait{opacity:0;animation:heroChatCycle 9s ease-in-out infinite both;}
+.hero .wa-body>:nth-child(1){animation-delay:.15s}
+.hero .wa-body>:nth-child(2){animation-delay:.85s}
+.hero .wa-body>:nth-child(3){animation-delay:1.55s}
+.hero .wa-body>:nth-child(4){animation-delay:2.25s}
+.hero .wa-body>:nth-child(5){animation-delay:2.95s}
+.hero .wa-body>:nth-child(6){animation-delay:3.65s}
+@keyframes notePulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.hero .note-1{animation:notePulse 3.8s ease-in-out infinite}
+.hero .note-2{animation:notePulse 4.4s ease-in-out .6s infinite}
+
+@media(prefers-reduced-motion:reduce){
+  .hero .hero-phone,.hero .sb1,.hero .wa-body>.msg,.hero .wa-body>.wait,.hero .note-card,
+  .hero-actions .btn,.hero .btn-row .btn,.arrow-inline{animation:none!important;opacity:1!important;transform:none!important;}
+}
+
+/* ━━━━━━━━━━━━━━ TABLET (max 980px) ━━━━━━━━━━━━━━ */
+@media(max-width:980px){
+  section{padding:56px 0}
+  .hero{padding:52px 0 72px}
+  .hero-grid,.split,.organized-grid{grid-template-columns:1fr}
+  .hero-visual{min-height:500px;margin-top:40px}
+  .hero-mini{max-width:100%}
+  .method-strip{
+    display:grid;
+    grid-template-columns:1fr 18px 1fr 18px 1.15fr 18px 1fr;
+    gap:3px;align-items:start;
   }
-
-  body { background: var(--cream); color: var(--dark); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    padding: 22px 32px;
-    display: flex; justify-content: space-between; align-items: center;
-    z-index: 100;
-    background: rgba(245,242,236,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--light);
+  .method-item{
+    min-height:auto;padding:0;border:0;background:transparent!important;
+    box-shadow:none;border-radius:0;align-items:center;text-align:center;gap:7px;
   }
+  .method-no{
+    width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    background:var(--forest);color:#fff;font-size:8px;letter-spacing:0;
+    box-shadow:0 6px 16px rgba(24,55,45,.12);
+  }
+  .method-item.principle .method-no{display:none}
+  .method-item.principle:before{
+    content:"✦";width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    background:var(--sage);color:var(--forest);font-size:11px;font-weight:700;
+    border:1px solid rgba(24,55,45,.10);
+  }
+  .method-text{font-size:9px;line-height:1.15;font-weight:700;max-width:74px}
+  .method-item.principle .method-text{font-size:8.5px;max-width:82px}
+  .method-arrow{display:block;font-size:13px;color:rgba(23,23,19,.25);padding-top:8px}
+  .problem-points{grid-template-columns:1fr}
+  .compare-layout{grid-template-columns:1fr;gap:24px}
+  .arrow{transform:rotate(90deg)}
+  .steps{grid-template-columns:1fr}
+  .mini-stats{grid-template-columns:1fr}
+  .review-line{grid-template-columns:96px 1fr}
+  .deliverable-preview{min-height:470px}
+}
 
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.05em; color: var(--dark); text-decoration: none; }
-  .nav-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
-  .nav-cta { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+/* ━━━━━━━━━━━━━━ MOBILE (max 640px) ━━━━━━━━━━━━━━ */
+@media(max-width:640px){
+
+  /* NAV */
+  nav .nav-mid{display:none}
+  .logo{font-size:24px}
+  .nav-cta{font-size:10px;padding:9px 14px}
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 32px 64px;
-    position: relative; overflow: hidden;
+  .hero{padding:44px 0 60px}
+  h1{font-size:clamp(32px,10vw,52px)}
+  h2{font-size:clamp(24px,8vw,40px)}
+  h3{font-size:clamp(20px,7vw,30px)}
+  .lead{font-size:15px}
+
+  /* Hero visual: hide phone, show simple decorative block */
+  .hero-visual{min-height:0;display:none}
+
+  /* Method strip mobile */
+  .hero-mini{
+    margin-top:28px;padding:16px 14px 15px;
+    border-radius:18px;background:rgba(255,255,255,.42);
+    border:1px solid rgba(23,23,19,.07);
+  }
+  .method-label{margin-bottom:14px;font-size:8px;letter-spacing:.16em}
+  .method-strip{
+    grid-template-columns:1fr 14px 1fr 14px 1.18fr 14px 1fr;
+    gap:2px;
+  }
+  .method-no,.method-item.principle:before{width:26px;height:26px}
+  .method-text{font-size:8px;max-width:58px}
+  .method-item.principle .method-text{font-size:7.5px;max-width:64px}
+  .method-arrow{font-size:10px;padding-top:6px}
+
+  /* Buttons full width on mobile */
+  .btn-row{flex-direction:column;gap:10px}
+  .btn{width:100%;justify-content:center;padding:15px 20px}
+
+  /* Sections */
+  section{padding:48px 0}
+
+  /* Problem points — vertical timeline */
+  .problem-points{
+    display:flex!important;flex-direction:column!important;
+    gap:0!important;margin-top:28px!important;
+    position:relative!important;
+    padding-left:52px!important;
+  }
+  .problem-points::before{
+    content:""!important;position:absolute!important;
+    left:16px!important;top:18px!important;bottom:18px!important;
+    width:2px!important;
+    background:linear-gradient(180deg,rgba(24,55,45,.2) 0%,rgba(24,55,45,.2) 60%,rgba(201,112,86,.3) 100%)!important;
+  }
+  .problem{
+    position:relative!important;
+    background:transparent!important;border:0!important;border-radius:0!important;
+    padding:0 0 28px 0!important;
+  }
+  .problem:last-child{padding-bottom:0!important}
+  .problem .num{
+    position:absolute!important;left:-52px!important;top:0!important;
+    width:34px!important;height:34px!important;border-radius:50%!important;
+    margin:0!important;font-size:10px!important;
+    background:var(--paper)!important;border:1px solid rgba(24,55,45,.15)!important;
+    color:var(--forest)!important;
+    box-shadow:0 4px 10px rgba(24,55,45,.06)!important;
+  }
+  .problem:nth-child(2) .num{background:#f3ebe6!important;border-color:rgba(169,101,77,.2)!important;color:#8a5847!important}
+  .problem:nth-child(3) .num{background:#edd9d0!important;border-color:rgba(169,101,77,.25)!important;color:#8a5847!important}
+  .problem h4{font-size:14px;margin-bottom:6px}
+  .problem p{font-size:12px}
+
+  /* Section cards */
+  .section-card{padding:24px}
+
+  /* Stack visual — flatten for mobile */
+  .stack-visual,.deliverable-preview{
+    min-height:0!important;
+    position:relative!important;
+    display:flex!important;flex-direction:column!important;gap:16px!important;
+    margin-top:32px!important;
+  }
+  .panel{
+    position:relative!important;left:auto!important;right:auto!important;
+    top:auto!important;bottom:auto!important;
+    width:100%!important;transform:none!important;
+    padding:18px!important;
   }
 
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(160deg, #2a2820 0%, #1a1917 60%, #2d2a22 100%);
-    z-index: 0;
-  }
+  /* Compare — vertical stack */
+  .compare-layout{grid-template-columns:1fr 28px 1fr!important;gap:6px!important;align-items:start!important}
+  .compare-phone{width:100%!important;max-width:100%!important;border-radius:22px!important;padding:7px!important}
+  .compare-screen{height:420px!important;border-radius:17px!important}
+  .compare-screen .phone-top{padding:8px!important}
+  .compare-screen .wa-body{padding:8px 7px!important}
+  .compare-screen .msg{font-size:8px!important;padding:6px 7px!important}
+  .compare-screen .wait{font-size:7px!important;padding:4px 6px!important}
+  .compare-label{font-size:8px!important;letter-spacing:.1em!important;margin-bottom:10px!important}
+  .caption{font-size:10px!important;max-width:100%!important}
+  .arrow{transform:none!important;font-size:20px!important;padding-top:200px!important}
 
-  .hero-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; position: relative; z-index: 2; }
+  /* Organized grid */
+  .organized-grid{grid-template-columns:1fr!important;gap:32px!important}
+  .review-line{grid-template-columns:1fr!important;gap:6px!important}
+  .review-line strong{font-size:13px}
 
-  .hero-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 9vw, 58px);
-    font-weight: 300; line-height: 1.1;
-    color: #f0ece4; position: relative; z-index: 2; margin-bottom: 24px;
-  }
+  /* Process band */
+  .process-band{padding:28px 20px;border-radius:20px}
+  .steps{gap:28px}
+  .step{border-top:1px solid rgba(255,255,255,.1);padding-top:20px}
+  .step .step-no{font-size:26px}
+  .step h4{font-size:15px}
 
-  .hero-headline em { font-style: italic; color: var(--gold); }
+  /* Stats */
+  .mini-stats{grid-template-columns:1fr!important}
+  .stat .big{font-size:44px}
 
-  .hero-sub { font-size: 14px; line-height: 1.8; color: rgba(240,236,228,0.6); max-width: 340px; position: relative; z-index: 2; margin-bottom: 40px; font-weight: 300; }
+  /* CTA */
+  .cta section{padding:56px 0}
 
-  .hero-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: transparent; border: 1px solid rgba(184,154,106,0.5);
-    color: var(--gold); padding: 14px 28px;
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    text-decoration: none; position: relative; z-index: 2;
-    transition: all 0.3s; width: fit-content;
-  }
-
-  .hero-btn:hover { background: var(--gold); color: var(--dark); }
-  .scroll-hint { position: absolute; bottom: 32px; right: 32px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(240,236,228,0.25); z-index: 2; writing-mode: vertical-rl; transform: rotate(180deg); }
-
-  /* SECTIONS */
-  section { padding: 72px 32px; }
-  .section-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; }
-  .divider { border: none; border-top: 1px solid var(--light); margin: 0; }
-
-  /* ABOUT */
-  .about-headline { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; line-height: 1.6; color: var(--dark); margin-bottom: 20px; max-width: 560px; }
-  .about-body { font-size: 14px; color: var(--mid); line-height: 1.8; font-weight: 300; max-width: 520px; margin-bottom: 32px; }
-  .text-link { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
-
-  /* STATS */
-  .stats-title { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 48px; }
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 32px; margin-bottom: 12px; }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--dark); line-height: 1; margin-bottom: 8px; }
-  .stat-label { font-size: 12px; font-weight: 500; color: var(--dark); margin-bottom: 6px; letter-spacing: 0.03em; }
-  .stat-desc { font-size: 12px; color: var(--mid); line-height: 1.6; font-weight: 300; }
-  .stats-source { font-size: 10px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 40px; }
-  .stats-note { font-size: 12px; color: var(--mid); font-weight: 300; font-style: italic; margin-top: 8px; line-height: 1.6; }
-
-  /* SERVICES */
-  .services-intro { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--mid); margin-bottom: 48px; line-height: 1.5; }
-  .service-item { border-left: 1px solid var(--gold); padding-left: 24px; margin-bottom: 40px; }
-  .service-num { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px; }
-  .service-title { font-size: 13px; font-weight: 500; color: var(--dark); margin-bottom: 10px; letter-spacing: 0.03em; }
-  .service-desc { font-size: 13px; color: var(--mid); line-height: 1.7; font-weight: 300; }
-  .service-note { font-size: 12px; color: var(--dark); font-style: italic; margin-top: 10px; line-height: 1.6; }
-
-  /* IMPROVE */
-  .improve-grid { display: flex; flex-direction: column; gap: 0; }
-  .improve-item { padding: 20px 0; border-bottom: 1px solid var(--light); display: flex; gap: 20px; align-items: flex-start; }
-  .improve-item:last-child { border-bottom: none; }
-  .improve-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
-  .improve-title { font-size: 13px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
-  .improve-desc { font-size: 13px; color: var(--mid); line-height: 1.6; font-weight: 300; }
-
-  /* WHO */
-  .who-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; line-height: 1.6; color: var(--dark); margin-bottom: 24px; max-width: 480px; }
-  .who-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .who-tag { font-size: 11px; letter-spacing: 0.08em; color: var(--mid); border: 1px solid var(--light); padding: 6px 14px; }
-
-  /* FINAL CTA */
-  .cta-section { background: var(--dark); padding: 80px 32px; text-align: center; }
-  .cta-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
-  .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: #f0ece4; line-height: 1.3; margin-bottom: 16px; }
-  .cta-sub { font-size: 13px; color: rgba(240,236,228,0.5); margin-bottom: 40px; font-weight: 300; line-height: 1.8; max-width: 360px; margin-left: auto; margin-right: auto; }
-  .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--dark); padding: 16px 32px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; font-weight: 500; }
-
-  footer { padding: 32px; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); text-align: center; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: rgba(240,236,228,0.6); letter-spacing: 0.05em; margin-bottom: 6px; }
-  .footer-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(240,236,228,0.2); margin-bottom: 4px; }
-  .footer-sub { font-size: 10px; color: rgba(240,236,228,0.15); letter-spacing: 0.1em; }
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:10px;text-align:center}
+}
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="#" class="nav-logo">Nuvora</a>
-  <span class="nav-tag">WhatsApp Customer Experience + AI</span>
-  <a href="https://wa.me/971541321219?text=Hi!%20I%20saw%20your%20profile%20and%20I%27d%20like%20to%20know%20how%20my%20WhatsApp%20could%20work%20better." class="nav-cta">Get in touch</a>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">Nuvora</a>
+    <div class="nav-mid">WhatsApp Customer Experience + AI</div>
+    <a class="nav-cta" href="https://wa.me/971541321219?text=Hi!%20I%20saw%20Nuvora%20and%20I%27d%20like%20to%20review%20my%20WhatsApp%20experience.">Review my WhatsApp</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <span class="hero-tag">Nuvora · WhatsApp Customer Experience + AI</span>
-  <h1 class="hero-headline">Your client experience<br>starts <em>before they<br>walk through<br>the door.</em></h1>
-  <p class="hero-sub">You may already deliver a great experience in person. I help bring that same level of speed, clarity and consistency to WhatsApp.</p>
-  <a href="https://wa.me/971541321219?text=Hi!%20I%20saw%20your%20profile%20and%20I%27d%20like%20to%20know%20how%20my%20WhatsApp%20could%20work%20better." class="hero-btn">Review my WhatsApp experience →</a>
-  <span class="scroll-hint">Scroll</span>
-</section>
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Nuvora · Dubai</div>
+      <h1>Your ad worked.<br>The customer clicked.<br>Then <em style="color:var(--green);font-style:italic">WhatsApp slowed everything down.</em></h1>
+      <p class="lead">Nuvora reviews and redesigns WhatsApp customer journeys so enquiries move with less waiting, less repetition and clearer next steps — then adds AI only where it genuinely improves the experience.</p>
+      <div class="btn-row">
+        <a class="btn btn-dark" href="https://wa.me/971541321219?text=Hi!%20I%20saw%20Nuvora%20and%20I%27d%20like%20to%20review%20my%20WhatsApp%20experience."><span>Review my WhatsApp <span class="arrow-inline">→</span></span></a>
+        <a class="btn btn-light" href="#transformation"><span>See the transformation <span class="arrow-inline">→</span></span></a>
+      </div>
+      <div class="hero-mini">
+        <div class="method-label">The Nuvora flow</div>
+        <div class="method-strip">
+          <div class="method-item"><span class="method-no">01</span><span class="method-text">Review</span></div>
+          <div class="method-arrow">→</div>
+          <div class="method-item"><span class="method-no">02</span><span class="method-text">Redesign</span></div>
+          <div class="method-arrow">→</div>
+          <div class="method-item principle"><span class="method-text">Customer journey first</span></div>
+          <div class="method-arrow">→</div>
+          <div class="method-item"><span class="method-no">03</span><span class="method-text">Automate</span></div>
+        </div>
+      </div>
+    </div>
 
-<hr class="divider">
+    <div class="hero-visual">
+      <div class="soft-block sb1"></div>
+      <div class="soft-block sb2"></div>
+      <div class="hero-phone">
+        <div class="phone-screen">
+          <div class="phone-top">
+            <div class="bubble-avatar">N</div>
+            <div><div class="bubble-name">Clinic WhatsApp</div><div class="bubble-sub">typically replies within a few hours</div></div>
+          </div>
+          <div class="wa-body">
+            <div class="msg in">Hi! I saw the laser offer on Instagram. Is it still available this week?</div>
+            <div class="msg out">Hello dear 😊 How can we assist you today?</div>
+            <div class="wait">2h 17m later</div>
+            <div class="msg in">The laser offer from Instagram. I wanted to know the price and if Friday is available.</div>
+            <div class="msg out">Please send your full name and phone number.</div>
+            <div class="msg in">Can you tell me first if Friday is available?</div>
+          </div>
+        </div>
+      </div>
+      <div class="note-card note-1"><h4>Friction</h4><p>The customer has to repeat context before getting a useful answer.</p></div>
+      <div class="note-card note-2"><h4>What Nuvora fixes</h4><p>Waiting, ambiguity, repeated questions and unclear next steps.</p></div>
+    </div>
+  </div>
+</header>
 
-<!-- ABOUT -->
 <section>
-  <div class="section-label">About</div>
-  <p class="about-headline">I help service businesses create faster, clearer WhatsApp journeys from enquiry to booking.</p>
-  <p class="about-body">Slow replies, confusing flows, repeated questions and unclear next steps can create unnecessary friction. I experience the journey as a real customer, identify what slows it down, redesign the conversation and use AI where it genuinely improves the experience.</p>
-  <a href="https://wa.me/971541321219" class="text-link">Let's talk →</a>
-</section>
-
-<hr class="divider">
-
-<!-- STATS -->
-<section>
-  <div class="section-label">Why this matters</div>
-  <div class="stats-title">Better experience. Smarter operations.</div>
-  <div class="stats-grid">
+  <div class="wrap split">
     <div>
-      <div class="stat-num">2×</div>
-      <div class="stat-label">Revenue growth</div>
-      <div class="stat-desc">CX leaders achieved more than double the revenue growth of CX laggards across 75 companies between 2016 and 2021.</div>
+      <div class="eyebrow">Why customers drop</div>
+      <h2>The issue is not that people are not interested. It is that the journey makes them work.</h2>
+      <p class="lead" style="margin-top:20px">By the time the customer reaches WhatsApp, intent is often already there. But a slow, generic or confusing conversation starts leaking momentum.</p>
     </div>
+    <div class="problem-points">
+      <div class="problem">
+        <div class="num">01</div>
+        <h4>They ask</h4>
+        <p>The customer arrives with a real question and expects useful direction.</p>
+      </div>
+      <div class="problem">
+        <div class="num">02</div>
+        <h4>They wait</h4>
+        <p>Long pauses make the enquiry feel heavier than it should.</p>
+      </div>
+      <div class="problem">
+        <div class="num">03</div>
+        <h4>They repeat</h4>
+        <p>Instead of moving forward, they explain themselves again and again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap split">
+    <div class="section-card">
+      <div class="eyebrow">What Nuvora includes</div>
+      <h3>Everything needed to make WhatsApp feel clearer, faster and more intentional.</h3>
+      <div class="checklist" style="margin-top:22px">
+        <div class="check"><i>✓</i><span>Journey review from the customer's point of view</span></div>
+        <div class="check"><i>✓</i><span>Redesign of replies, flow and next-step logic</span></div>
+        <div class="check"><i>✓</i><span>Clearer copy so customers understand what to do next</span></div>
+        <div class="check"><i>✓</i><span>WhatsApp entry experience aligned with your offer</span></div>
+        <div class="check"><i>✓</i><span>Automation recommendations only where they actually help</span></div>
+      </div>
+    </div>
+
+    <div class="stack-visual deliverable-preview">
+      <div class="panel panel-a audit-preview">
+        <div class="mini-title">01 · Experience review</div>
+        <div class="audit-row"><span class="audit-dot bad"></span><div><strong>Generic first reply</strong><small>Customer asks price, but the reply does not answer it.</small></div></div>
+        <div class="audit-row"><span class="audit-dot bad"></span><div><strong>2h+ waiting point</strong><small>Momentum drops before the customer gets useful information.</small></div></div>
+        <div class="audit-row"><span class="audit-dot warn"></span><div><strong>Unclear next step</strong><small>The customer has to ask again what to do.</small></div></div>
+      </div>
+      <div class="panel panel-b flow-preview">
+        <div class="mini-title">02 · Redesigned conversation</div>
+        <div class="mini-wa">
+          <div class="mini-wa-top"><span class="mini-avatar">N</span><div><strong>Clinic WhatsApp</strong><small>redesigned flow</small></div></div>
+          <div class="mini-wa-body">
+            <div class="mini-msg in">Hi! How much is the facial offer?</div>
+            <div class="mini-msg out">It's AED 399 😊 I can also check Friday availability for you now.</div>
+            <div class="mini-msg in">Yes, after 4 PM.</div>
+            <div class="mini-msg out">I have 5:00 PM or 6:30 PM. Which works better?</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-c outcome-preview">
+        <div class="mini-title">03 · What improves</div>
+        <div class="outcome-line"><strong>Faster useful answer</strong><span>↓ waiting</span></div>
+        <div class="outcome-line"><strong>Clearer next step</strong><span>↓ friction</span></div>
+        <div class="outcome-line"><strong>More consistent journey</strong><span>↑ confidence</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="transformation">
+  <div class="wrap">
+    <div class="eyebrow">Transformation</div>
+    <h2>Not a prettier chatbot. A better customer journey.</h2>
+    <p class="lead" style="margin-top:18px">Same business. Same enquiry. The difference is how much work the customer has to do before reaching the next step.</p>
+    <div class="compare-layout">
+      <div class="compare-col">
+        <div class="compare-label before">Before · friction</div>
+        <div class="compare-phone">
+          <div class="compare-screen">
+            <div class="phone-top">
+              <div class="bubble-avatar">C</div>
+              <div><div class="bubble-name">Clinic WhatsApp</div><div class="bubble-sub">online</div></div>
+            </div>
+            <div class="wa-body">
+              <div class="msg in">Hi! I saw the facial offer on Instagram. Is it still available?<br><small>10:04</small></div>
+              <div class="wait">1h 42m waiting</div>
+              <div class="msg out">Hello dear 😊 Welcome to our clinic. How can we assist you today?<br><small>11:46</small></div>
+              <div class="msg in">The facial offer from Instagram. I wanted the price and Friday availability.<br><small>11:48</small></div>
+              <div class="wait">36m waiting</div>
+              <div class="msg out">Sure dear. Please send your full name and mobile number.<br><small>12:24</small></div>
+              <div class="msg in">Jessica, 05X XXX XXXX. What is the price?<br><small>12:26</small></div>
+              <div class="wait">51m waiting</div>
+              <div class="msg out">The offer is AED 399.<br><small>13:17</small></div>
+              <div class="msg in">And do you have Friday after 4 PM?<br><small>13:18</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Repeated context · several waiting periods · useful answer arrives late</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="compare-col">
+        <div class="compare-label after">After · designed journey</div>
+        <div class="compare-phone">
+          <div class="compare-screen">
+            <div class="phone-top">
+              <div class="bubble-avatar">C</div>
+              <div><div class="bubble-name">Clinic WhatsApp</div><div class="bubble-sub">online</div></div>
+            </div>
+            <div class="wa-body">
+              <div class="msg in">Hi! I saw the facial offer on Instagram. Is it still available?<br><small>10:04</small></div>
+              <div class="msg out">Yes 😊 The facial offer is AED 399 and it's available this week. I can check Friday now — before or after 4 PM?<br><small>10:05</small></div>
+              <div class="msg in">After 4 PM please.<br><small>10:06</small></div>
+              <div class="msg out">Friday I have 5:00 PM or 6:30 PM. Which works better?<br><small>10:06</small></div>
+              <div class="msg in">5:00 PM.<br><small>10:07</small></div>
+              <div class="msg out">Perfect — I can hold 5:00 PM. Please send your name and mobile number to confirm.<br><small>10:07</small></div>
+              <div class="msg in">Jessica, 05X XXX XXXX.<br><small>10:08</small></div>
+              <div class="msg out">Thanks, Jessica. Your Friday 5:00 PM slot is confirmed. I'll send the appointment details here.<br><small>10:08</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Useful answer in 1 minute · context preserved · the journey moves toward booking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap organized-grid">
     <div>
-      <div class="stat-num">+14%</div>
-      <div class="stat-label">Issue resolution per hour</div>
-      <div class="stat-desc">In a study of 5,000 customer-service agents, GenAI increased issues resolved per hour by 14% and reduced handling time by 9%.</div>
+      <div class="eyebrow">Experience review</div>
+      <h2>What I review in the journey.</h2>
+      <p class="lead" style="margin-top:16px">Five signals that usually reveal where a WhatsApp conversation starts losing momentum.</p>
     </div>
-  </div>
-  <div class="stats-source">Source: McKinsey & Company</div>
-  <div class="stats-note">These figures are market context, not Nuvora results. They reflect the broader case for investing in customer experience.</div>
-</section>
-
-<hr class="divider">
-
-<!-- SERVICES -->
-<section>
-  <div class="section-label">What I do</div>
-  <p class="services-intro">I review, redesign and automate — in that order.</p>
-
-  <div class="service-item">
-    <div class="service-num">01</div>
-    <div class="service-title">WhatsApp Experience Review</div>
-    <div class="service-desc">I experience your WhatsApp journey as a real customer and identify where it can be faster, clearer and more consistent. I look for waiting points, repeated questions, missing context and differences across entry points.</div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-num">02</div>
-    <div class="service-title">Journey Redesign</div>
-    <div class="service-desc">I simplify unnecessary steps and redesign the conversation so every interaction helps the customer move forward.</div>
-    <div class="service-note">The goal is not to automate more. The goal is to make the journey better first.</div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-num">03</div>
-    <div class="service-title">AI + Automation</div>
-    <div class="service-desc">Once the journey is clear, I automate repetitive interactions such as FAQs, offers, qualification, follow-ups and booking steps. Humans stay where they add real value.</div>
+    <div class="review-lines">
+      <div class="review-line"><strong>Speed</strong><span>How long until the customer receives a useful answer?</span></div>
+      <div class="review-line"><strong>Clarity</strong><span>Can the customer understand the answer without asking twice?</span></div>
+      <div class="review-line"><strong>Next step</strong><span>Does each reply make the next action obvious?</span></div>
+      <div class="review-line"><strong>Consistency</strong><span>Does the experience stay clear across entry points and team members?</span></div>
+      <div class="review-line"><strong>Follow-up</strong><span>What happens when interest goes quiet?</span></div>
+    </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- IMPROVE -->
 <section>
-  <div class="section-label">What we improve</div>
-  <div class="improve-grid">
-    <div class="improve-item">
-      <div class="improve-dot"></div>
-      <div>
-        <div class="improve-title">Faster useful answers</div>
-        <div class="improve-desc">Clients get the information they need sooner.</div>
+  <div class="wrap process-band">
+    <div class="eyebrow">How Nuvora works</div>
+    <h2>I review, redesign and automate — in that order.</h2>
+    <p class="lead" style="margin-top:16px;color:rgba(255,255,255,.62)">Technology comes after the journey is understood. Otherwise you risk automating confusion.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-no">01</div>
+        <h4>Review</h4>
+        <p>I go through the WhatsApp journey like a real customer and identify waiting points, repeated questions, unclear replies and weak next steps.</p>
       </div>
-    </div>
-    <div class="improve-item">
-      <div class="improve-dot"></div>
-      <div>
-        <div class="improve-title">Less friction</div>
-        <div class="improve-desc">Fewer unnecessary steps, repeated questions and waiting points.</div>
+      <div class="step">
+        <div class="step-no">02</div>
+        <h4>Redesign</h4>
+        <p>I simplify the conversation so every interaction has a purpose and helps the customer move toward a clearer decision.</p>
       </div>
-    </div>
-    <div class="improve-item">
-      <div class="improve-dot"></div>
-      <div>
-        <div class="improve-title">More consistency</div>
-        <div class="improve-desc">A clearer experience across teams, channels and entry points.</div>
+      <div class="step">
+        <div class="step-no">03</div>
+        <h4>Automate</h4>
+        <p>Only once the journey makes sense do I suggest AI or automation — for faster execution, not for hiding a broken flow.</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- WHO -->
 <section>
-  <div class="section-label">Who it's for</div>
-  <p class="who-text">For service businesses that use WhatsApp to turn enquiries into bookings, appointments or sales.</p>
-  <div class="who-tags">
-    <span class="who-tag">Clinics</span>
-    <span class="who-tag">Beauty & Wellness</span>
-    <span class="who-tag">Gyms</span>
-    <span class="who-tag">Restaurants</span>
-    <span class="who-tag">Hospitality</span>
-    <span class="who-tag">Pet Care</span>
-    <span class="who-tag">Other Service Businesses</span>
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Why it matters</div>
+      <h2>Better customer experience is not cosmetic.</h2>
+      <div class="mini-stats">
+        <div class="stat">
+          <div class="big">2×</div>
+          <b>Revenue growth</b>
+          <p>CX leaders achieved more than double the revenue growth of CX laggards across 75 companies between 2016 and 2021.</p>
+          <small>Market context · McKinsey & Company</small>
+        </div>
+        <div class="stat">
+          <div class="big">+14%</div>
+          <b>Issues resolved per hour</b>
+          <p>In a study of 5,000 customer-service agents, GenAI increased issues resolved per hour by 14% and reduced handling time by 9%.</p>
+          <small>Market context · McKinsey & Company</small>
+        </div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="eyebrow">Who it's for</div>
+      <h3>Service businesses where WhatsApp is part of the sales journey.</h3>
+      <p style="margin-top:16px">Especially when enquiries need to become bookings, appointments or sales and the current experience still depends on manual replies.</p>
+      <div class="chips">
+        <span>Clinics</span><span>Beauty & Wellness</span><span>Gyms</span>
+        <span>Restaurants</span><span>Hospitality</span><span>Pet care</span>
+        <span>Other service businesses</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta-section">
-  <div class="cta-label">Dubai, UAE</div>
-  <h2 class="cta-headline">Ready to see how your WhatsApp<br>experience could work better?</h2>
-  <p class="cta-sub">I'll experience your current journey as a real customer and show you where it could be faster, clearer and easier to move through.</p>
-  <a href="https://wa.me/971541321219?text=Hi!%20I%20saw%20your%20profile%20and%20I%27d%20like%20to%20know%20how%20my%20WhatsApp%20could%20work%20better." class="cta-btn">Review my WhatsApp experience →</a>
+<section class="cta">
+  <div class="wrap">
+    <div class="eyebrow">Dubai, UAE</div>
+    <h2>Let me experience your WhatsApp like a customer.</h2>
+    <p>I'll go through the journey, identify where it could be faster, clearer and easier to move through, and show you where redesign or AI could actually help.</p>
+    <div class="btn-row">
+      <a class="btn btn-dark" href="https://wa.me/971541321219?text=Hi!%20I%20saw%20Nuvora%20and%20I%27d%20like%20to%20review%20my%20WhatsApp%20experience."><span>Review my WhatsApp experience <span class="arrow-inline">→</span></span></a>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Nuvora</div>
-  <div class="footer-tag">WhatsApp Customer Experience + AI</div>
-  <div class="footer-sub">Dubai, UAE · Connect. Convert. Grow.</div>
+  <div class="wrap footer-inner">
+    <div>Nuvora · WhatsApp Customer Experience + AI</div>
+    <div>Dubai · Connect. Convert. Grow.</div>
+  </div>
 </footer>
-
 </body>
 </html>
